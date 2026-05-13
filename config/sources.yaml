@@ -1,0 +1,174 @@
+# front_office_wire/config/sources.yaml
+#
+# Add/remove sources here. Supported types: greenhouse, lever, workday, teamworkonline, generic
+#
+# Greenhouse: find the board token from the careers page URL or page source.
+#   e.g. https://boards.greenhouse.io/nba -> token is "nba"
+#
+# Lever: find the company slug from https://jobs.lever.co/{company}
+#
+# Workday: URL is parsed automatically. Override with params if needed.
+
+sources:
+
+  # ── League Offices ────────────────────────────────────────────────────────
+
+  - name: NBA Careers
+    type: greenhouse
+    url: https://boards.greenhouse.io/nba
+    params:
+      token: nba
+
+  - name: NFL Careers
+    type: workday
+    url: https://nfl.wd5.myworkdayjobs.com/en-US/NFL_Careers
+
+  - name: MLB Careers
+    type: greenhouse
+    url: https://boards.greenhouse.io/mlb
+    params:
+      token: mlb
+
+  - name: NHL Careers
+    type: workday
+    url: https://nhl.wd1.myworkdayjobs.com/en-US/NHL_Careers
+
+  - name: MLS Careers
+    type: greenhouse
+    url: https://boards.greenhouse.io/majorleaguesoccer
+    params:
+      token: majorleaguesoccer
+
+  # ── NBA Teams ─────────────────────────────────────────────────────────────
+
+  - name: Golden State Warriors
+    type: greenhouse
+    url: https://boards.greenhouse.io/goldenstatewarriors
+    params:
+      token: goldenstatewarriors
+
+  - name: Boston Celtics
+    type: greenhouse
+    url: https://boards.greenhouse.io/bostonceltics
+    params:
+      token: bostonceltics
+
+  - name: Chicago Bulls
+    type: greenhouse
+    url: https://boards.greenhouse.io/chicagobulls
+    params:
+      token: chicagobulls
+
+  - name: Dallas Mavericks
+    type: greenhouse
+    url: https://boards.greenhouse.io/dallasmavericks
+    params:
+      token: dallasmavericks
+
+  - name: Los Angeles Lakers
+    type: greenhouse
+    url: https://boards.greenhouse.io/losangeleslakers
+    params:
+      token: losangeleslakers
+
+  - name: Miami Heat
+    type: greenhouse
+    url: https://boards.greenhouse.io/miamiheat
+    params:
+      token: miamiheat
+
+  - name: New York Knicks
+    type: greenhouse
+    url: https://boards.greenhouse.io/newyorkknicks
+    params:
+      token: newyorkknicks
+
+  - name: Philadelphia 76ers
+    type: greenhouse
+    url: https://boards.greenhouse.io/philadelphia76ers
+    params:
+      token: philadelphia76ers
+
+  # ── NFL Teams ─────────────────────────────────────────────────────────────
+
+  - name: San Francisco 49ers
+    type: greenhouse
+    url: https://boards.greenhouse.io/sffortyniners
+    params:
+      token: sffortyniners
+
+  - name: Kansas City Chiefs
+    type: workday
+    url: https://kansascitychiefs.wd1.myworkdayjobs.com/en-US/Chiefs_External
+
+  - name: New England Patriots
+    type: workday
+    url: https://patriots.wd1.myworkdayjobs.com/en-US/Patriots_Careers
+
+  - name: Dallas Cowboys
+    type: greenhouse
+    url: https://boards.greenhouse.io/dallascowboys
+    params:
+      token: dallascowboys
+
+  # ── MLB Teams ─────────────────────────────────────────────────────────────
+
+  - name: New York Mets
+    type: greenhouse
+    url: https://boards.greenhouse.io/newyorkmets
+    params:
+      token: newyorkmets
+
+  - name: Los Angeles Dodgers
+    type: workday
+    url: https://dodgers.wd5.myworkdayjobs.com/en-US/dodgerscareers
+
+  - name: Boston Red Sox
+    type: greenhouse
+    url: https://boards.greenhouse.io/redsox
+    params:
+      token: redsox
+
+  - name: Chicago Cubs
+    type: greenhouse
+    url: https://boards.greenhouse.io/chicagocubs
+    params:
+      token: chicagocubs
+
+  - name: Houston Astros
+    type: greenhouse
+    url: https://boards.greenhouse.io/houstonastros
+    params:
+      token: houstonastros
+
+  # ── NHL Teams ─────────────────────────────────────────────────────────────
+
+  - name: Toronto Maple Leafs (MLSE)
+    type: workday
+    url: https://mlse.wd3.myworkdayjobs.com/en-US/MLSE
+
+  # ── MLS Teams ─────────────────────────────────────────────────────────────
+
+  - name: LA Galaxy
+    type: greenhouse
+    url: https://boards.greenhouse.io/lagalaxy
+    params:
+      token: lagalaxy
+
+  # ── European Soccer ───────────────────────────────────────────────────────
+
+  - name: Manchester City
+    type: greenhouse
+    url: https://boards.greenhouse.io/manchestercityfc
+    params:
+      token: manchestercityfc
+
+  - name: Chelsea FC
+    type: generic
+    url: https://www.chelseafc.com/en/about-chelsea/jobs
+
+  # ── Aggregators ───────────────────────────────────────────────────────────
+
+  - name: TeamWork Online
+    type: teamworkonline
+    url: https://www.teamworkonline.com/jobs-in-sports
