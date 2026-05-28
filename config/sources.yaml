@@ -1,174 +1,330 @@
-# front_office_wire/config/sources.yaml
+# sports_jobs/config/sources.yaml
 #
-# Add/remove sources here. Supported types: greenhouse, lever, workday, teamworkonline, generic
+# All MLB, NBA, and NFL team job sources with verified URLs.
 #
-# Greenhouse: find the board token from the careers page URL or page source.
-#   e.g. https://boards.greenhouse.io/nba -> token is "nba"
+# ATS types with working scrapers:
+#   greenhouse     - public REST API, very reliable
+#   lever          - public REST API, very reliable
+#   workday        - internal CXS API, reliable
+#   teamworkonline - HTML scraping, sport-level aggregator pages
+#   dayforce       - needs fixing
+#   generic        - HTML fallback (best-effort)
 #
-# Lever: find the company slug from https://jobs.lever.co/{company}
-#
-# Workday: URL is parsed automatically. Override with params if needed.
+# ATS types NOT yet implemented (see commented section at bottom):
+#   ukgpro  - 9 teams
+#   adp     - 6 teams
+#   paycor  - 3 teams
 
 sources:
 
-  # ── League Offices ────────────────────────────────────────────────────────
+  # ════════════════════════════════════════════════════════════
+  # TEAMWORK ONLINE
+  # Sport-level aggregator pages - each entry covers all teams
+  # on TeamWork Online for that sport. One scrape per sport.
+  # ════════════════════════════════════════════════════════════
 
-  - name: NBA Careers
+  - name: TeamWork Online - Baseball
+    type: teamworkonline
+    url: https://www.teamworkonline.com/baseball-jobs
+
+  - name: TeamWork Online - Basketball
+    type: teamworkonline
+    url: https://www.teamworkonline.com/basketball-jobs
+
+  - name: TeamWork Online - Football
+    type: teamworkonline
+    url: https://www.teamworkonline.com/football-jobs
+
+  # ════════════════════════════════════════════════════════════
+  # GREENHOUSE  (public JSON API)
+  # ════════════════════════════════════════════════════════════
+
+  # MLB
+  - name: Oakland Athletics
     type: greenhouse
-    url: https://boards.greenhouse.io/nba
+    url: https://job-boards.greenhouse.io/athleticsbaseballops
     params:
-      token: nba
+      token: athleticsbaseballops
 
-  - name: NFL Careers
-    type: workday
-    url: https://nfl.wd5.myworkdayjobs.com/en-US/NFL_Careers
-
-  - name: MLB Careers
+  - name: Cleveland Guardians
     type: greenhouse
-    url: https://boards.greenhouse.io/mlb
+    url: https://job-boards.greenhouse.io/clevelandguardiansbops
     params:
-      token: mlb
+      token: clevelandguardiansbops
 
-  - name: NHL Careers
-    type: workday
-    url: https://nhl.wd1.myworkdayjobs.com/en-US/NHL_Careers
-
-  - name: MLS Careers
+  - name: Philadelphia Phillies
     type: greenhouse
-    url: https://boards.greenhouse.io/majorleaguesoccer
+    url: https://job-boards.greenhouse.io/philliesbaseballoperations
     params:
-      token: majorleaguesoccer
+      token: philliesbaseballoperations
 
-  # ── NBA Teams ─────────────────────────────────────────────────────────────
-
-  - name: Golden State Warriors
+  # NFL
+  - name: NFL League Office
     type: greenhouse
-    url: https://boards.greenhouse.io/goldenstatewarriors
+    url: https://job-boards.greenhouse.io/nflcareers
     params:
-      token: goldenstatewarriors
+      token: nflcareers
 
-  - name: Boston Celtics
+  - name: Denver Broncos
     type: greenhouse
-    url: https://boards.greenhouse.io/bostonceltics
+    url: https://job-boards.greenhouse.io/denverbroncosteamllc
     params:
-      token: bostonceltics
+      token: denverbroncosteamllc
 
-  - name: Chicago Bulls
+  - name: Detroit Lions
     type: greenhouse
-    url: https://boards.greenhouse.io/chicagobulls
+    url: https://job-boards.greenhouse.io/detroitlions
     params:
-      token: chicagobulls
+      token: detroitlions
 
-  - name: Dallas Mavericks
+  - name: Philadelphia Eagles
     type: greenhouse
-    url: https://boards.greenhouse.io/dallasmavericks
+    url: https://job-boards.greenhouse.io/philadelphiaeagles
     params:
-      token: dallasmavericks
+      token: philadelphiaeagles
 
-  - name: Los Angeles Lakers
-    type: greenhouse
-    url: https://boards.greenhouse.io/losangeleslakers
-    params:
-      token: losangeleslakers
-
-  - name: Miami Heat
-    type: greenhouse
-    url: https://boards.greenhouse.io/miamiheat
-    params:
-      token: miamiheat
-
-  - name: New York Knicks
-    type: greenhouse
-    url: https://boards.greenhouse.io/newyorkknicks
-    params:
-      token: newyorkknicks
-
-  - name: Philadelphia 76ers
-    type: greenhouse
-    url: https://boards.greenhouse.io/philadelphia76ers
-    params:
-      token: philadelphia76ers
-
-  # ── NFL Teams ─────────────────────────────────────────────────────────────
-
-  - name: San Francisco 49ers
-    type: greenhouse
-    url: https://boards.greenhouse.io/sffortyniners
-    params:
-      token: sffortyniners
-
-  - name: Kansas City Chiefs
-    type: workday
-    url: https://kansascitychiefs.wd1.myworkdayjobs.com/en-US/Chiefs_External
-
-  - name: New England Patriots
-    type: workday
-    url: https://patriots.wd1.myworkdayjobs.com/en-US/Patriots_Careers
-
-  - name: Dallas Cowboys
-    type: greenhouse
-    url: https://boards.greenhouse.io/dallascowboys
-    params:
-      token: dallascowboys
-
-  # ── MLB Teams ─────────────────────────────────────────────────────────────
-
-  - name: New York Mets
-    type: greenhouse
-    url: https://boards.greenhouse.io/newyorkmets
-    params:
-      token: newyorkmets
-
-  - name: Los Angeles Dodgers
-    type: workday
-    url: https://dodgers.wd5.myworkdayjobs.com/en-US/dodgerscareers
+  # ════════════════════════════════════════════════════════════
+  # LEVER  (public JSON API)
+  # ════════════════════════════════════════════════════════════
 
   - name: Boston Red Sox
-    type: greenhouse
-    url: https://boards.greenhouse.io/redsox
+    type: lever
+    url: https://jobs.lever.co/redsox
     params:
-      token: redsox
+      company: redsox
+
+  - name: San Francisco Giants
+    type: lever
+    url: https://jobs.lever.co/sfgiants
+    params:
+      company: sfgiants
+
+  # ════════════════════════════════════════════════════════════
+  # WORKDAY  (CXS API - company/jobboard auto-parsed from URL)
+  # ════════════════════════════════════════════════════════════
+
+  # MLB
+  - name: Atlanta Braves
+    type: workday
+    url: https://atlantabravesmlb.wd5.myworkdayjobs.com/AtlantaBraves
 
   - name: Chicago Cubs
-    type: greenhouse
-    url: https://boards.greenhouse.io/chicagocubs
-    params:
-      token: chicagocubs
-
-  - name: Houston Astros
-    type: greenhouse
-    url: https://boards.greenhouse.io/houstonastros
-    params:
-      token: houstonastros
-
-  # ── NHL Teams ─────────────────────────────────────────────────────────────
-
-  - name: Toronto Maple Leafs (MLSE)
     type: workday
-    url: https://mlse.wd3.myworkdayjobs.com/en-US/MLSE
+    url: https://my1060wd.wd5.myworkdayjobs.com/Chicago_Cubs_FO
 
-  # ── MLS Teams ─────────────────────────────────────────────────────────────
+  - name: New York Mets
+    type: workday
+    url: https://sterlingmets.wd5.myworkdayjobs.com/Mets
 
-  - name: LA Galaxy
-    type: greenhouse
-    url: https://boards.greenhouse.io/lagalaxy
-    params:
-      token: lagalaxy
+  - name: Seattle Mariners
+    type: workday
+    url: https://mariners.wd5.myworkdayjobs.com/Mariners
 
-  # ── European Soccer ───────────────────────────────────────────────────────
+  # NBA
+  - name: Atlanta Hawks
+    type: workday
+    # Note: myworkdaysite.com - different URL structure, handled by workday.py
+    url: https://wd1.myworkdaysite.com/en-US/recruiting/hawks/External
 
-  - name: Manchester City
-    type: greenhouse
-    url: https://boards.greenhouse.io/manchestercityfc
-    params:
-      token: manchestercityfc
+  - name: Toronto Raptors (MLSE)
+    type: workday
+    url: https://mlse.wd3.myworkdayjobs.com/MLSE
 
-  - name: Chelsea FC
+  # NFL
+  - name: Atlanta Falcons
+    type: workday
+    url: https://ambgroup.wd1.myworkdayjobs.com/AMBSE
+
+  # ════════════════════════════════════════════════════════════
+  # DAYFORCE  (JSON API)
+  # Field names in API response vary slightly by org; the scraper
+  # tries multiple key names. Log output will show parse errors
+  # if a new field schema is encountered.
+  # Dayforce scraper needs fixing, fallback to generic scraper
+  # ════════════════════════════════════════════════════════════
+
+  # MLB
+  - name: Arizona Diamondbacks
     type: generic
-    url: https://www.chelseafc.com/en/about-chelsea/jobs
+    url: https://jobs.dayforcehcm.com/en-US/dbacks/CANDIDATEPORTAL
 
-  # ── Aggregators ───────────────────────────────────────────────────────────
+  # NBA
+  - name: Minnesota Timberwolves
+    type: generic
+    url: https://jobs.dayforcehcm.com/en-US/packportal/CANDIDATEPORTAL
 
-  - name: TeamWork Online
-    type: teamworkonline
-    url: https://www.teamworkonline.com/jobs-in-sports
+  - name: New Orleans Pelicans
+    type: generic
+    url: https://jobs.dayforcehcm.com/bensonenterprises/SAINTSPELSCAREERS
+
+  - name: Portland Trail Blazers
+    type: generic
+    url: https://jobs.dayforcehcm.com/en-US/slp/CANDIDATEPORTAL
+
+  - name: San Antonio Spurs
+    type: generic
+    url: https://jobs.dayforcehcm.com/en-US/onesse/CANDIDATEPORTAL
+
+  # NFL
+  - name: Dallas Cowboys
+    type: generic
+    url: https://jobs.dayforcehcm.com/jonesentities/DALLASCOWBOYSFOOTBALLCLUB
+
+  - name: Green Bay Packers
+    type: generic
+    url: https://jobs.dayforcehcm.com/en-US/greenbaypackers/CANDIDATEPORTAL
+
+  - name: Tampa Bay Buccaneers
+    type: generic
+    url: https://jobs.dayforcehcm.com/en-US/tbb/CANDIDATEPORTALTBB
+
+  - name: Tennessee Titans
+    type: generic
+    url: https://jobs.dayforcehcm.com/titans/CANDIDATEPORTAL
+
+  # ════════════════════════════════════════════════════════════
+  # NOT YET IMPLEMENTED - fallback to generic pending implementation
+  # ════════════════════════════════════════════════════════════
+
+  # UKG Pro / UltiPro - implement scrapers/ukgpro.py (9 teams)
+  # MLB
+  - name: Chicago White Sox
+    type: generic
+    url: https://recruiting2.ultipro.com/CHI1000CWS/JobBoard/8e2339b4-b699-46e9-8b91-e3e826e53794/
+
+  - name: Colorado Rockies
+    type: generic
+    url: https://recruiting2.ultipro.com/COL1047COLBA/JobBoard/17b65dc7-8957-462f-bbe5-957d054a4367/
+    
+  - name: Houston Astros
+    type: generic
+    url: https://recruiting2.ultipro.com/HOU1000/JobBoard/e68ddd55-8f58-ba9d-0b3a-76742aed1055/
+
+  - name: Pittsburgh Pirates
+    type: generic   
+    url: https://pirates.rec.pro.ukg.net/PIT1500PITA/JobBoard/1571bce9-cb30-4961-98da-07b26506146a/
+
+  - name: Washington Nationals
+    type: generic
+    url: https://washnats.rec.pro.ukg.net/MON1001WNBC/JobBoard/769be41b-7ab1-40e5-b837-33d7c87b5787/
+
+  # NBA
+  - name: Charlotte Hornets
+    type: generic
+    url: https://recruiting.ultipro.com/HOR1011HORNT/JobBoard/5b257d2d-0813-4167-b64c-95fb001e0d96/
+    
+  - name: Miami Heat
+    type: generic
+    url: https://recruiting.ultipro.com/MIA1004MHLP/JobBoard/b34868a3-6ce1-4a28-b8fb-afb1cd5be9d3/
+    
+  - name: Orlando Magic
+    type: generic
+    url: https://recruiting.ultipro.com/ORL1001MAGIC/JobBoard/d2d331e7-e222-4a47-bb35-c640aa29a3d7/
+
+  # NFL 
+  - name: Buffalo Bills
+    type: generic
+    url: https://recruiting.ultipro.com/HOC10001BFLO/JobBoard/fe63f75a-e850-45d2-8772-63a210927fdc/
+
+  # ADP WorkforceNow 
+  - name: Tampa Bay Rays
+    type: generic
+    url: https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=d4e6b608-831f-4a04-bdb6-f61493552d27
+
+  - name: Boston Celtics
+    type: generic
+    url: https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=60aee0ad-011f-4b26-8df9-73f60a0520a2
+    
+  - name: Milwaukee Bucks
+    type: generic
+    url: https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=035c77cb-5b5c-4e48-b858-605ab1663076
+
+  - name: Chicago Bears
+    type: generic
+    url: https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=0103272e-a631-4293-97b2-7da68f74bc1f
+
+  - name: Las Vegas 
+    typeRaiders: generic
+    url: https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=58d2d945-3a8e-4bea-81f1-e18a4a93c137
+
+  - name: Minnesota Vikings
+    type: generic
+    url: https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=79875354-b46d-4cef-b74b-aff52f5942af
+
+  # Paycor 
+  - name: Minnesota Twins
+    type: generic
+    url: https://recruitingbypaycor.com/career/CareerHome.action?clientId=8a7883d08b729b3e018b72dc67f6007f
+
+  - name: Denver Nuggets
+    type: generic
+    url: https://recruitingbypaycor.com/career/CareerHome.action?clientId=8a7883c68eee9454018ef2f81a7d05a4
+
+  - name: Houston Rockets
+    type: generic
+    url: https://recruitingbypaycor.com/career/CareerHome.action?clientId=8a7883c689b7fbd50189ffa65b61208d
+
+  # One-off platforms 
+  - name: St. Louis Cardinals
+    type: generic
+    url: https://stlcardinals.aaimtrack.com/jobs/
+
+  - name: San Diego Padres
+    type: generic
+    url: https://careers.hireology.com/sandiegopadres
+
+  - name: Toronto Blue Jays
+    type: generic
+    url: https://www.mlb.com/bluejays/team/career/front-office-opportunities
+
+  - name: Memphis Grizzlies
+    type: generic
+    url: https://careers-grizzlies.icims.com/jobs/search
+
+  - name: Philadelphia 76ers
+    type: generic
+    url: https://recruit.hirebridge.com/v3/CareerCenter/v2/?cid=8097
+
+  - name: Detroit Pistons
+    type: generic
+    url: https://recruiting.paylocity.com/recruiting/jobs/All/19408bc7-4e69-4ea7-9ff6-3e39455d6469/Detroit-Pistons
+
+  - name: Indiana Pacers
+    type: generic
+    url: https://pse.hrmdirect.com/employment/job-openings.php?search=true&
+
+  - name: Brooklyn Nets
+    type: generic
+    url: https://bkse.com/careers
+
+  - name: MSG Sports (Knicks)
+    type: generic
+    url: https://www.msgsports.com/jobs/
+
+  - name: Cleveland Browns
+    type: generic
+    url: https://clevelandbrowns.isolvedhire.com/jobs/
+
+  - name: Baltimore Ravens
+    type: generic
+    url: https://www.baltimoreravens.com/employment
+
+  - name: Carolina Panthers
+    type: generic
+    url: https://www.panthers.com/about-us/employment
+
+  - name: San Francisco 49ers
+    type: generic
+    url: https://www.49ers.com/employment/
+
+  - name: Seattle Seahawks
+    type: generic
+    url: https://www2.seahawks.com/employment/openings/
+
+  - name: Los Angeles Chargers
+    type: generic
+    url: https://www.linkedin.com/company/los-angeles-chargers/jobs/
+
+  - name: New England Patriots
+    type: generic
+    url: https://www.paycomonline.net/v4/ats/web.php/portal/715F4103F5E4D572C92AFE85684343DC/career-page
