@@ -25,6 +25,7 @@ DEFAULT_POSITIVE: list[str] = [
     "baseball systems",
     "football systems",
     "hockey systems",
+    "soccer systems",
     "full stack",
     "fullstack",
     "frontend",
@@ -32,8 +33,6 @@ DEFAULT_POSITIVE: list[str] = [
     "backend",
     "back end",
     "platform engineer",
-    "site reliability",
-    "infrastructure engineer",
     "systems developer",
     "systems engineer",
 ]
