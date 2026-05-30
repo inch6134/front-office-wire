@@ -1,15 +1,21 @@
 """
-Workday scraper using the Workday URL pattern
+Workday scraper using CXS jobs API.
 
-Workday career page URLs follow the pattern:
+Handles two Workday URL structures:
+
+  Pattern A (myworkdayjobs.com):
     https://{company}.wd{n}.myworkdayjobs.com/en-US/{jobboard}
+    CXS API: https://{company}.wd{n}.myworkdayjobs.com/wday/cxs/{company}/{jobboard}/jobs
 
-The API endpoint:
-    POST https://{company}.wd{n}.myworkdayjobs.com/wday/cxs/{company}/{jobboard}/jobs
+  Pattern B (myworkdaysite.com):
+    https://wd{n}.myworkdaysite.com/en-US/recruiting/{company}/{jobboard}
+    CXS API: https://wd{n}.myworkdaysite.com/wday/cxs/{company}/{jobboard}/jobs
 
-Source config requires either:
-  - params.company + params.jobboard + params.version  (explicit)
-  - or a parseable URL (auto-detected)
+Sources can supply explicit params to override auto-detection:
+  params:
+    company: mycompany
+    jobboard: MyJobBoard
+    version: wd5
 """
 import logging
 import re
@@ -21,10 +27,41 @@ from utils.normalization import normalize_location
 
 logger = logging.getLogger(__name__)
 
-_URL_RE = re.compile(
+# company.wd5.myworkdayjobs.com/[locale/]jobboard
+_JOBS_RE = re.compile(
     r"https?://(?P<company>[^.]+)\.(?P<version>wd\d+)\.myworkdayjobs\.com"
     r"(?:/[^/]+)?/(?P<jobboard>[^/?#]+)"
 )
+
+# wd1.myworkdaysite.com/[locale/]recruiting/company/jobboard
+_SITE_RE = re.compile(
+    r"https?://(?P<version>wd\d+)\.myworkdaysite\.com"
+    r"(?:/[^/]+)?/recruiting/(?P<company>[^/?#]+)/(?P<jobboard>[^/?#]+)"
+)
+
+
+def _parse_url(url: str) -> tuple[str, str, str]:
+    """
+    Returns (host, company, jobboard) parsed from a Workday URL.
+    Raises ValueError if neither pattern matches.
+    """
+    m = _JOBS_RE.match(url)
+    if m:
+        company = m.group("company")
+        version = m.group("version")
+        jobboard = m.group("jobboard")
+        host = f"{company}.{version}.myworkdayjobs.com"
+        return host, company, jobboard
+
+    m = _SITE_RE.match(url)
+    if m:
+        version = m.group("version")
+        company = m.group("company")
+        jobboard = m.group("jobboard")
+        host = f"{version}.myworkdaysite.com"
+        return host, company, jobboard
+
+    raise ValueError(f"Unrecognized Workday URL structure: {url}")
 
 
 class WorkdayScraper(BaseScraper):
@@ -32,47 +69,49 @@ class WorkdayScraper(BaseScraper):
         super().__init__(name, url, **kwargs)
         params = kwargs.get("params", {})
 
-        company = params.get("company")
-        jobboard = params.get("jobboard")
-        version = params.get("version", "wd5")
+        if params.get("company") and params.get("jobboard"):
+            company = params["company"]
+            jobboard = params["jobboard"]
+            version = params.get("version", "wd5")
+            # Determine host: if url contains myworkdaysite, use that pattern
+            if "myworkdaysite.com" in url:
+                m = _SITE_RE.match(url)
+                host = f"{m.group('version')}.myworkdaysite.com" if m else f"{version}.myworkdaysite.com"
+            else:
+                host = f"{company}.{version}.myworkdayjobs.com"
+        else:
+            host, company, jobboard = _parse_url(url)
 
-        if not (company and jobboard):
-            m = _URL_RE.match(url)
-            if not m:
-                raise ValueError(f"Cannot parse Workday URL: {url}")
-            company = m.group("company")
-            version = m.group("version")
-            jobboard = m.group("jobboard")
-
-        self.api_url = (
-            f"https://{company}.{version}.myworkdayjobs.com"
-            f"/wday/cxs/{company}/{jobboard}/jobs"
-        )
+        self.api_url = f"https://{host}/wday/cxs/{company}/{jobboard}/jobs"
+        m = _JOBS_RE.match(url)
+        if m:
+            self._job_url_base = f"https://{host}/en-US/{jobboard}"
+        else:
+            self._job_url_base = f"https://{host}/recruiting/{company}/{jobboard}"
 
     def fetch_jobs(self) -> list[Job]:
         logger.info("Fetching Workday jobs", extra={"source": self.name, "url": self.api_url})
 
-        payload = {"limit": 20, "offset": 0, "searchText": "", "appliedFacets": {}}
-        all_jobs: list[dict[str, Any]] = []
+        payload: dict[str, Any] = {"limit": 20, "offset": 0, "searchText": "", "appliedFacets": {}}
+        all_postings: list[dict[str, Any]] = []
         offset = 0
 
         while True:
             payload["offset"] = offset
             data = self.post(self.api_url, json=payload).json()
             postings = data.get("jobPostings", [])
-            all_jobs.extend(postings)
+            all_postings.extend(postings)
             total = data.get("total", 0)
             offset += len(postings)
-            if offset >= total or not postings:
+            if not postings or offset >= total:
                 break
 
-        logger.info("Raw jobs fetched", extra={"source": self.name, "count": len(all_jobs)})
+        logger.info("Raw jobs fetched", extra={"source": self.name, "count": len(all_postings)})
 
-        base = self.api_url.split("/wday/")[0]
         jobs = []
-        for raw in all_jobs:
+        for raw in all_postings:
             try:
-                jobs.append(self._parse(raw, base))
+                jobs.append(self._parse(raw))
             except Exception as exc:
                 logger.warning(
                     "Failed to parse Workday job",
@@ -80,14 +119,15 @@ class WorkdayScraper(BaseScraper):
                 )
         return jobs
 
-    def _parse(self, raw: dict[str, Any], base_url: str) -> Job:
+    def _parse(self, raw: dict[str, Any]) -> Job:
         path = raw.get("externalPath", "")
-        job_url = f"{base_url}{path}" if path else base_url
-        location_nodes = raw.get("locationsText", raw.get("locations", ""))
-        if isinstance(location_nodes, list):
-            location = normalize_location(", ".join(location_nodes))
+        job_url = f"{self._job_url_base}{path}" if path else self._job_url_base
+
+        locations = raw.get("locationsText", raw.get("locations", ""))
+        if isinstance(locations, list):
+            location = normalize_location(", ".join(locations))
         else:
-            location = normalize_location(str(location_nodes))
+            location = normalize_location(str(locations))
 
         return Job(
             id=make_job_id(job_url),
