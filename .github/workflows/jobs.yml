@@ -9,7 +9,8 @@ jobs:
   scrape:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-
+    environment: Github Actions Env
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v4
