@@ -39,6 +39,7 @@ cp .env.example .env
 ```
 
 **SMTP (Gmail example):**
+
 ```
 EMAIL_BACKEND=smtp
 EMAIL_TO=you@example.com
@@ -47,14 +48,6 @@ SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
 SMTP_USER=you@gmail.com
 SMTP_PASSWORD=your_app_password   # Google App Password, not your login password
-```
-
-**Resend:**
-```
-EMAIL_BACKEND=resend
-RESEND_API_KEY=re_xxxxxxxxxxxx
-EMAIL_FROM=alerts@yourdomain.com
-EMAIL_TO=you@example.com
 ```
 
 ### 3. Run locally
@@ -70,6 +63,7 @@ First run will create `front-office-wire.db` and send an email if any matching j
 Open `config/sources.yaml` and add an entry:
 
 **Greenhouse:**
+
 ```yaml
 - name: Sacramento Kings
   type: greenhouse
@@ -81,6 +75,7 @@ Open `config/sources.yaml` and add an entry:
 To find the token: open the team's careers page, view source, and search for `greenhouse.io`. The token is the slug in the URL.
 
 **Lever:**
+
 ```yaml
 - name: Seattle Sounders
   type: lever
@@ -90,6 +85,7 @@ To find the token: open the team's careers page, view source, and search for `gr
 ```
 
 **Workday:**
+
 ```yaml
 - name: New York Yankees
   type: workday
@@ -99,6 +95,7 @@ To find the token: open the team's careers page, view source, and search for `gr
 The scraper auto-detects company, version, and jobboard from the URL.
 
 **Generic HTML fallback:**
+
 ```yaml
 - name: Some Team
   type: generic
@@ -151,7 +148,7 @@ sports_jobs/
 ├── filters/
 │   └── keywords.py       # Positive/negative keyword filtering
 ├── notifications/
-│   ├── emailer.py        # SMTP + Resend sending
+│   ├── emailer.py        # SMTP sending
 │   └── templates.py      # Plain text + HTML email templates
 ├── database/
 │   ├── db.py             # SQLite operations
@@ -172,15 +169,14 @@ sports_jobs/
 
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
-| `EMAIL_BACKEND` | No | `smtp` | `smtp` or `resend` |
+| `EMAIL_BACKEND` | No | `smtp` | `smtp` |
 | `EMAIL_TO` | Yes | - | Notification recipient |
 | `EMAIL_FROM` | Yes | - | Sender address |
-| `SMTP_HOST` | SMTP only | - | e.g. `smtp.gmail.com` |
-| `SMTP_PORT` | SMTP only | `587` | |
-| `SMTP_USER` | SMTP only | - | |
-| `SMTP_PASSWORD` | SMTP only | - | App password for Gmail |
-| `RESEND_API_KEY` | Resend only | - | |
+| `SMTP_HOST` | Yes | - | e.g. `smtp.gmail.com` |
+| `SMTP_PORT` | Yes | `587` | |
+| `SMTP_USER` | Yes | - | |
+| `SMTP_PASSWORD` | Yes | - | App password for Gmail |
 | `SOURCES_CONFIG` | No | `config/sources.yaml` | |
-| `DB_PATH` | No | `sports_jobs.db` | |
+| `DB_PATH` | No | `front_office_wire.db` | |
 | `LOG_LEVEL` | No | `INFO` | `DEBUG/INFO/WARNING/ERROR` |
 | `LOG_FORMAT` | No | `text` | `text` or `json` |

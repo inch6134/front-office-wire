@@ -1,9 +1,8 @@
 """
 Email notification sender.
 
-Supports two backends:
+Supports:
 - SMTP  (set EMAIL_BACKEND=smtp, or leave unset — default)
-- Resend (set EMAIL_BACKEND=resend)
 
 Required env vars are documented in .env.example.
 """
@@ -31,10 +30,7 @@ def send_notifications(jobs: list[Job]) -> None:
     html_body = render_html(jobs)
     text_body = render_text(jobs)
 
-    if backend == "resend":
-        _send_resend(subject, html_body, text_body)
-    else:
-        _send_smtp(subject, html_body, text_body)
+    _send_smtp(subject, html_body, text_body)
 
 
 def _send_smtp(subject: str, html_body: str, text_body: str) -> None:
@@ -58,24 +54,3 @@ def _send_smtp(subject: str, html_body: str, text_body: str) -> None:
         smtp.sendmail(from_addr, [to_addr], msg.as_string())
 
     logger.info("Email sent via SMTP", extra={"to": to_addr, "subject": subject})
-
-
-def _send_resend(subject: str, html_body: str, text_body: str) -> None:
-    api_key = os.environ["RESEND_API_KEY"]
-    from_addr = os.environ["EMAIL_FROM"]
-    to_addr = os.environ["EMAIL_TO"]
-
-    response = requests.post(
-        "https://api.resend.com/emails",
-        headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
-        json={
-            "from": from_addr,
-            "to": [to_addr],
-            "subject": subject,
-            "html": html_body,
-            "text": text_body,
-        },
-        timeout=10,
-    )
-    response.raise_for_status()
-    logger.info("Email sent via Resend", extra={"to": to_addr, "subject": subject})
