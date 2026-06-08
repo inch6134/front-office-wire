@@ -28,9 +28,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: front_office_wire.db
-          key: front-office-wire-db-${{ runner.os }}
+          key: front-office-wire-db-${{ runner.os }}-${{ github.run_id }}
           restore-keys: |
-            front-office-wire-db-
+            front-office-wire-db-${{ runner.os }}-
 
       - name: Run scraper
         env:
@@ -50,4 +50,4 @@ jobs:
         if: always()
         with:
           path: front_office_wire.db
-          key: front-office-wire-db-${{ runner.os }}
+          key: front-office-wire-db-${{ runner.os }}-${{ github.run_id }}

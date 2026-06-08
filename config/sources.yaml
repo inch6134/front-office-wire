@@ -18,24 +18,6 @@
 sources:
 
   # ════════════════════════════════════════════════════════════
-  # TEAMWORK ONLINE
-  # Sport-level aggregator pages - each entry covers all teams
-  # on TeamWork Online for that sport. One scrape per sport.
-  # ════════════════════════════════════════════════════════════
-
-  - name: TeamWork Online - Baseball
-    type: teamworkonline
-    url: https://www.teamworkonline.com/baseball-jobs
-
-  - name: TeamWork Online - Basketball
-    type: teamworkonline
-    url: https://www.teamworkonline.com/basketball-jobs
-
-  - name: TeamWork Online - Football
-    type: teamworkonline
-    url: https://www.teamworkonline.com/football-jobs
-
-  # ════════════════════════════════════════════════════════════
   # GREENHOUSE  (public JSON API)
   # ════════════════════════════════════════════════════════════
 
@@ -82,6 +64,12 @@ sources:
     url: https://job-boards.greenhouse.io/philadelphiaeagles
     params:
       token: philadelphiaeagles
+
+  - name: Baltimore Orioles
+    type: greenhouse
+    url: https://job-boards.greenhouse.io/baltimoreorioles
+    params:
+      token: baltimoreorioles
 
   # ════════════════════════════════════════════════════════════
   # LEVER  (public JSON API)
