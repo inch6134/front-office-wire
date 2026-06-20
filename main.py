@@ -7,11 +7,12 @@ Run:
 Environment:
     See .env.example for required variables.
 """
+
 import logging
 import os
 import sys
+import argparse
 from pathlib import Path
-
 import yaml
 from dotenv import load_dotenv
 
@@ -26,17 +27,31 @@ from notifications.emailer import send_notifications
 setup_logging()
 logger = logging.getLogger(__name__)
 
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "--source",
+    nargs="+",
+    help="Scrape only the specified source. May be provided multiple times.",
+)
 
-def load_sources(config_path: Path) -> list[dict]:
+
+def load_sources(config_path: Path, args: Namespace) -> list[dict]:
     with config_path.open() as f:
-        return yaml.safe_load(f).get("sources", [])
+        sources = yaml.safe_load(f).get("sources", [])
+        sources = [
+            source
+            for source in sources
+            if not args.source or source["name"] in args.source
+        ]
+        return sources
 
 
 def run() -> None:
     config_path = Path(os.getenv("SOURCES_CONFIG", "config/sources.yaml"))
     db_path = Path(os.getenv("DB_PATH", "front_office_wire.db"))
+    args = parser.parse_args()
 
-    sources = load_sources(config_path)
+    sources = load_sources(config_path, args)
     job_filter = JobFilter()
 
     all_new_jobs = []

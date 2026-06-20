@@ -2,13 +2,14 @@
 TeamWork Online scraper.
 
 TeamWork Online is a sports-industry-specific job board.
-They paginate via query params: ?page=N
 
-Job listings are returned as HTML cards. This scraper targets:
-    https://www.teamworkonline.com/jobs-in-sports
+Team-specific:
+    https://www.teamworkonline.com/baseball-jobs/orioles-jobs/baltimore-orioles-jobs
+
+In sport-level mode, each job card includes the organization name.
+In team-specific mode, self.name is used as the organization fallback.
 """
 import logging
-import re
 
 from bs4 import BeautifulSoup
 
@@ -19,7 +20,7 @@ from utils.normalization import normalize_location
 logger = logging.getLogger(__name__)
 
 BASE_URL = "https://www.teamworkonline.com"
-JOBS_URL = f"{BASE_URL}/jobs-in-sports"
+MAX_PAGES = 50
 
 
 class TeamWorkOnlineScraper(BaseScraper):
@@ -27,22 +28,30 @@ class TeamWorkOnlineScraper(BaseScraper):
         super().__init__(name, url, **kwargs)
 
     def fetch_jobs(self) -> list[Job]:
-        logger.info("Fetching TeamWork Online jobs", extra={"source": self.name})
+        logger.info(
+            "Fetching TeamWork Online jobs",
+            extra={"source": self.name, "url": self.url},
+        )
         jobs: list[Job] = []
         page = 1
 
         while True:
             params = {"page": page} if page > 1 else {}
-            response = self.get(JOBS_URL, params=params)
+            response = self.get(self.url, params=params)
             soup = BeautifulSoup(response.text, "html.parser")
-            cards = soup.select("li.jobs__list-item, div.job-listing, article.job")
+
+            cards = (
+                soup.select("li.jobs__list-item")
+                or soup.select("div.job-listing")
+                or soup.select("article.job")
+                or soup.select("li[class*='job']")
+            )
 
             if not cards:
-                # Try a broader selector on first page to detect structure changes
                 if page == 1:
                     logger.warning(
-                        "No job cards found on TeamWork Online; page structure may have changed",
-                        extra={"source": self.name},
+                        "No job cards found; TeamWork Online page structure may have changed",
+                        extra={"source": self.name, "url": self.url},
                     )
                 break
 
@@ -57,12 +66,12 @@ class TeamWorkOnlineScraper(BaseScraper):
                         extra={"source": self.name, "error": str(exc)},
                     )
 
-            # Stop if no next-page link
-            next_link = soup.select_one("a[rel='next'], a.pagination__next")
+            next_link = soup.select_one("a[rel='next'], a.pagination__next, .next a")
             if not next_link:
                 break
             page += 1
-            if page > 25:  # hard cap
+            if page > MAX_PAGES:
+                logger.warning("Hit page cap", extra={"source": self.name, "pages": MAX_PAGES})
                 break
 
         logger.info("Raw jobs fetched", extra={"source": self.name, "count": len(jobs)})
@@ -74,14 +83,31 @@ class TeamWorkOnlineScraper(BaseScraper):
             return None
 
         href = link_el.get("href", "")
-        job_url = href if href.startswith("http") else f"{BASE_URL}{href}"
-        title_el = card.select_one("h2, h3, .job-title, .jobs__title")
-        title = (title_el.get_text(strip=True) if title_el else link_el.get_text(strip=True))
+        if not href or href == "#":
+            return None
 
-        org_el = card.select_one(".organization, .company, .jobs__organization")
+        job_url = href if href.startswith("http") else f"{BASE_URL}{href}"
+
+        title_el = (
+            card.select_one("h2")
+            or card.select_one("h3")
+            or card.select_one(".jobs__title")
+            or card.select_one(".job-title")
+        )
+        title = title_el.get_text(strip=True) if title_el else link_el.get_text(strip=True)
+
+        org_el = (
+            card.select_one(".jobs__organization")
+            or card.select_one(".organization")
+            or card.select_one(".company")
+        )
         organization = org_el.get_text(strip=True) if org_el else self.name
 
-        loc_el = card.select_one(".location, .jobs__location")
+        loc_el = (
+            card.select_one(".jobs__location")
+            or card.select_one(".location")
+            or card.select_one("[class*='location']")
+        )
         location = normalize_location(loc_el.get_text(strip=True) if loc_el else "")
 
         return Job(
