@@ -13,9 +13,6 @@ MAX_PAGES = 50
 
 
 class TeamWorkOnlineScraper(BaseScraper):
-    def __init__(self, name: str, url: str, **kwargs):
-        super().__init__(name, url, **kwargs)
-
     def fetch_jobs(self) -> list[Job]:
         logger.info(
             "Fetching TeamWork Online jobs",
@@ -38,12 +35,7 @@ class TeamWorkOnlineScraper(BaseScraper):
             )
             soup = BeautifulSoup(response.text, "html.parser")
 
-            cards = (
-                soup.select("li.jobs__list-item")
-                or soup.select("div.job-listing")
-                or soup.select("article.job")
-                or soup.select("li[class*='job']")
-            )
+            cards = soup.select("div.organization-portal__job")
 
             if not cards:
                 if page == 1:
@@ -64,7 +56,7 @@ class TeamWorkOnlineScraper(BaseScraper):
                         extra={"source": self.name, "error": str(exc)},
                     )
 
-            next_link = soup.select_one("a[rel='next'], a.pagination__next, .next a")
+            next_link = soup.select_one("a[rel='next']")
             if not next_link:
                 break
             page += 1
@@ -78,39 +70,19 @@ class TeamWorkOnlineScraper(BaseScraper):
         return jobs
 
     def _parse_card(self, card) -> Job | None:
-        link_el = card.select_one("a")
-        if not link_el:
-            return None
-
-        href = link_el.get("href", "")
-        if not href or href == "#":
-            return None
-
+        title_el = card.select_one("h3.organization-portal__job-title a")
+        href = title_el.get("href", "")
         job_url = href if href.startswith("http") else f"{BASE_URL}{href}"
+        title = title_el.get_text(strip=True)
 
-        title_el = (
-            card.select_one("h2")
-            or card.select_one("h3")
-            or card.select_one(".jobs__title")
-            or card.select_one(".job-title")
-        )
-        title = (
-            title_el.get_text(strip=True) if title_el else link_el.get_text(strip=True)
-        )
-
-        org_el = (
-            card.select_one(".jobs__organization")
-            or card.select_one(".organization")
-            or card.select_one(".company")
-        )
+        org_el = card.select_one("p.organization-portal__job-category")
         organization = org_el.get_text(strip=True) if org_el else self.name
 
-        loc_el = (
-            card.select_one(".jobs__location")
-            or card.select_one(".location")
-            or card.select_one("[class*='location']")
+        loc_el = card.select_one("p.organization-portal__job-location")
+        raw_location = (
+            loc_el.get_text(strip=True).replace(" · ", ", ") if loc_el else ""
         )
-        location = normalize_location(loc_el.get_text(strip=True) if loc_el else "")
+        location = normalize_location(raw_location)
 
         return Job(
             id=make_job_id(job_url),

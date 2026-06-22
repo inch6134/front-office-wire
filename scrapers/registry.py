@@ -1,10 +1,3 @@
-"""
-Scraper registry.
-
-Maps source `type` strings from sources.yaml to scraper classes.
-Instantiates scrapers from raw config dicts.
-"""
-
 import logging
 from typing import Any
 
