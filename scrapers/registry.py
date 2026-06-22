@@ -4,6 +4,7 @@ Scraper registry.
 Maps source `type` strings from sources.yaml to scraper classes.
 Instantiates scrapers from raw config dicts.
 """
+
 import logging
 from typing import Any
 
@@ -12,7 +13,6 @@ from .greenhouse import GreenhouseScraper
 from .lever import LeverScraper
 from .workday import WorkdayScraper
 from .teamworkonline import TeamWorkOnlineScraper
-from .dayforce import DayforceScraper
 from .generic import GenericScraper
 
 logger = logging.getLogger(__name__)
@@ -22,7 +22,6 @@ _REGISTRY: dict[str, type[BaseScraper]] = {
     "lever": LeverScraper,
     "workday": WorkdayScraper,
     "teamworkonline": TeamWorkOnlineScraper,
-    "dayforce": DayforceScraper,
     "generic": GenericScraper,
 }
 

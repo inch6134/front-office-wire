@@ -1,11 +1,3 @@
-"""
-Generic HTML fallback scraper for career pages without a known ATS.
-
-Uses heuristics to find job links on a page. Configure selectors
-per-source via params.selectors if the defaults miss.
-
-Default selectors target common ATS-agnostic patterns.
-"""
 import logging
 
 from bs4 import BeautifulSoup
@@ -39,12 +31,23 @@ class GenericScraper(BaseScraper):
 
     def _derive_base(self, url: str) -> str:
         from urllib.parse import urlparse
+
         p = urlparse(url)
         return f"{p.scheme}://{p.netloc}"
 
     def fetch_jobs(self) -> list[Job]:
-        logger.info("Fetching generic HTML jobs", extra={"source": self.name, "url": self.url})
+        logger.info(
+            "Fetching generic HTML jobs", extra={"source": self.name, "url": self.url}
+        )
         response = self.get(self.url)
+        logger.info(
+            "Generic page fetched",
+            extra={
+                "source": self.name,
+                "status": response.status_code,
+                "content_length": len(response.text),
+            },
+        )
         soup = BeautifulSoup(response.text, "html.parser")
 
         cards = []

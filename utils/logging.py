@@ -1,10 +1,3 @@
-"""
-Logging configuration.
-
-Outputs JSON-formatted log records when LOG_FORMAT=json (default in CI/GHA),
-or human-readable format for local dev.
-"""
-
 import json
 import logging
 import os

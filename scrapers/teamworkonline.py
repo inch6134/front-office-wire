@@ -1,14 +1,3 @@
-"""
-TeamWork Online scraper.
-
-TeamWork Online is a sports-industry-specific job board.
-
-Team-specific:
-    https://www.teamworkonline.com/baseball-jobs/orioles-jobs/baltimore-orioles-jobs
-
-In sport-level mode, each job card includes the organization name.
-In team-specific mode, self.name is used as the organization fallback.
-"""
 import logging
 
 from bs4 import BeautifulSoup
@@ -38,6 +27,15 @@ class TeamWorkOnlineScraper(BaseScraper):
         while True:
             params = {"page": page} if page > 1 else {}
             response = self.get(self.url, params=params)
+            logger.info(
+                "TeamWork Online page fetched",
+                extra={
+                    "source": self.name,
+                    "page": page,
+                    "status": response.status_code,
+                    "content_length": len(response.text),
+                },
+            )
             soup = BeautifulSoup(response.text, "html.parser")
 
             cards = (
@@ -71,7 +69,9 @@ class TeamWorkOnlineScraper(BaseScraper):
                 break
             page += 1
             if page > MAX_PAGES:
-                logger.warning("Hit page cap", extra={"source": self.name, "pages": MAX_PAGES})
+                logger.warning(
+                    "Hit page cap", extra={"source": self.name, "pages": MAX_PAGES}
+                )
                 break
 
         logger.info("Raw jobs fetched", extra={"source": self.name, "count": len(jobs)})
@@ -94,7 +94,9 @@ class TeamWorkOnlineScraper(BaseScraper):
             or card.select_one(".jobs__title")
             or card.select_one(".job-title")
         )
-        title = title_el.get_text(strip=True) if title_el else link_el.get_text(strip=True)
+        title = (
+            title_el.get_text(strip=True) if title_el else link_el.get_text(strip=True)
+        )
 
         org_el = (
             card.select_one(".jobs__organization")

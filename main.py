@@ -30,7 +30,7 @@ logger = logging.getLogger(__name__)
 parser = argparse.ArgumentParser()
 parser.add_argument(
     "--source",
-    nargs='+'
+    nargs="+",
     help="Scrape only the specified source. May be provided multiple times.",
 )
 
