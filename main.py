@@ -30,12 +30,12 @@ logger = logging.getLogger(__name__)
 parser = argparse.ArgumentParser()
 parser.add_argument(
     "--source",
-    nargs="+",
+    nargs='+'
     help="Scrape only the specified source. May be provided multiple times.",
 )
 
 
-def load_sources(config_path: Path, args: Namespace) -> list[dict]:
+def load_sources(config_path: Path, args: argparse.Namespace) -> list[dict]:
     with config_path.open() as f:
         sources = yaml.safe_load(f).get("sources", [])
         sources = [
