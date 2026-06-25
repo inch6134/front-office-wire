@@ -1,20 +1,3 @@
-# sports_jobs/config/sources.yaml
-#
-# All NBA, MLB, NFL, NHL team job sources with verified URLs.
-#
-# ATS types with working scrapers:
-#   greenhouse     - public REST API, very reliable
-#   lever          - public REST API, very reliable
-#   workday        - internal CXS API, reliable
-#   teamworkonline - HTML scraping, sport-level aggregator pages
-#   dayforce       - needs fixing
-#   generic        - HTML fallback (best-effort)
-#
-# ATS types NOT yet implemented (see commented section at bottom):
-#   ukgpro  - 9 teams
-#   adp     - 6 teams
-#   paycor  - 3 teams
-
 sources:
 
   # ════════════════════════════════════════════════════════════
@@ -25,14 +8,10 @@ sources:
     type: generic
     url: https://careers.nba.com/search-results
 
-  - name: Boston Celtics
-    type: generic
-    url: https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=60aee0ad-011f-4b26-8df9-73f60a0520a2
+  # - name: Boston Celtics
+  #   type: generic
+  #   url: https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=60aee0ad-011f-4b26-8df9-73f60a0520a2
 
-  - name: Brooklyn Nets
-    type: generic
-    url: https://bkse.com/careers
-    
   - name: Brooklyn Nets
     type: teamworkonline
     url: https://www.teamworkonline.com/basketball-jobs/brooklynnets/bse-global-jobs
@@ -42,20 +21,16 @@ sources:
     url: https://www.msgsports.com/jobs/
 
   - name: Philadelphia 76ers
-    type: generic
-    url: https://recruit.hirebridge.com/v3/CareerCenter/v2/?cid=8097
-
-  - name: Philadelphia 76ers
     type: teamworkonline
     url: https://www.teamworkonline.com/multiple-properties/harris-blitzer-sports-entertainment-jobs/harris-blitzer-sports-and-entertainment-jobs?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=28511&employment_opportunity_search%5Bcareer_level_id%5D=
 
-  - name: Toronto Raptors
-    type: workday
-    url: https://mlse.wd3.myworkdayjobs.com/MLSE
+  # - name: Toronto Raptors
+  #   type: workday
+  #   url: https://mlse.wd3.myworkdayjobs.com/MLSE
 
   - name: Chicago Bulls
     type: generic
-    url: https://www.nba.com/bulls/career-opportunities
+    url: https://recruiting.paylocity.com/recruiting/jobs/All/cdb52b85-73f7-4c58-bf01-80d3e5ee2ca3/The-Chicago-Bulls
 
   - name: Cleveland Cavaliers
     type: teamworkonline
@@ -66,33 +41,17 @@ sources:
     url: https://recruiting.paylocity.com/recruiting/jobs/All/19408bc7-4e69-4ea7-9ff6-3e39455d6469/Detroit-Pistons
 
   - name: Indiana Pacers
-    type: generic
-    url: https://pse.hrmdirect.com/employment/job-openings.php?search=true&
-
-  - name: Indiana Pacers
     type: teamworkonline
     url: https://www.teamworkonline.com/basketball-jobs/pacers/pacers-sports-entertainment?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=29151&employment_opportunity_search%5Bcareer_level_id%5D=
-
-  - name: Milwaukee Bucks
-    type: generic
-    url: https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=035c77cb-5b5c-4e48-b858-605ab1663076
 
   - name: Milwaukee Bucks
     type: teamworkonline
     url: https://www.teamworkonline.com/basketball-jobs/milwaukee-bucks-jobs/milwaukee-bucks
 
   - name: Atlanta Hawks
-    type: workday
-    url: https://wd1.myworkdaysite.com/en-US/recruiting/hawks/External
-
-  - name: Atlanta Hawks
     type: teamworkonline
     url: https://www.teamworkonline.com/basketball-jobs/atlanta-hawks-jobs/atlanta-hawks-jobs?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=&employment_opportunity_search%5Bcareer_level_id%5D=
 
-  - name: Charlotte Hornets
-    type: generic
-    url: https://recruiting.ultipro.com/HOR1011HORNT/JobBoard/5b257d2d-0813-4167-b64c-95fb001e0d96/
-    
   - name: Charlotte Hornets
     type: teamworkonline
     url: https://www.teamworkonline.com/basketball-jobs/charlotte/charlotte-hornets
@@ -101,10 +60,6 @@ sources:
     type: generic
     url: https://recruiting.ultipro.com/MIA1004MHLP/JobBoard/b34868a3-6ce1-4a28-b8fb-afb1cd5be9d3/
     
-  - name: Orlando Magic
-    type: generic
-    url: https://recruiting.ultipro.com/ORL1001MAGIC/JobBoard/d2d331e7-e222-4a47-bb35-c640aa29a3d7/
-
   - name: Orlando Magic
     type: teamworkonline
     url: https://www.teamworkonline.com/basketball-jobs/orlandomagic/orlando-magic-28482?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=28482&employment_opportunity_search%5Bcareer_level_id%5D=
@@ -117,13 +72,13 @@ sources:
     type: teamworkonline
     url: https://www.teamworkonline.com/multiple-properties/kroenkesportsjobs/denver-nuggets-29775
 
-  - name: Minnesota Timberwolves
-    type: generic
-    url: https://jobs.dayforcehcm.com/en-US/packportal/CANDIDATEPORTAL
+  # - name: Minnesota Timberwolves
+  #   type: generic
+  #   url: https://jobs.dayforcehcm.com/en-US/packportal/CANDIDATEPORTAL
 
-  - name: Oklahoma City Thunder
-    type: teamworkonline
-    url: https://www.nba.com/thunder/employment
+  # - name: Oklahoma City Thunder
+  #   type: teamworkonline
+  #   url: https://www.paycomonline.net/v4/ats/web.php/portal/8E7F16AD6654E4ED3797EE9F40DB0A48/career-page
 
   - name: Portland Trail Blazers
     type: generic
@@ -137,21 +92,17 @@ sources:
     type: teamworkonline
     url: https://www.teamworkonline.com/basketball-jobs/warriors/golden-state-warriors-careers?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=29421&employment_opportunity_search%5Bcareer_level_id%5D=
 
-  - name: LA Clippers
-    type: generic
-    url: https://www.nba.com/clippers/company/careers/openpositions#laclippers
+  # - name: LA Clippers
+  #   type: generic
+  #   url: https://www.nba.com/clippers/company/careers/openpositions#laclippers
 
   - name: Los Angeles Lakers
     type: teamworkonline
     url: https://www.teamworkonline.com/basketball-jobs/los-angeles-lakers/los-angeles-lakers-jobs
 
-  - name: Phoenix Suns
-    type: teamworkonline
-    url: https://www.teamworkonline.com/basketball-jobs/phoenix-suns/phoenix-suns?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=28346&employment_opportunity_search%5Bcareer_level_id%5D=https://www.teamworkonline.com/basketball-jobs/phoenix-suns/phoenix-suns?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=28346&employment_opportunity_search%5Bcareer_level_id%5D=
-
-  - name: Phoenix Suns
-    type: generic
-    url: https://jobs.dayforcehcm.com/en-US/slp/CANDIDATEPORTAL
+  # - name: Phoenix Suns
+  #   type: generic
+  #   url: https://jobs.dayforcehcm.com/en-US/slp/CANDIDATEPORTAL
 
   - name: Sacramento Kings
     type: teamworkonline
@@ -159,101 +110,55 @@ sources:
 
   - name: Dallas Mavericks
     type: generic
-    url: https://recruitingbypaycor.com/career/CareerHome.action?clientId=8a7883c68eee9454018ef2f81a7d05a4 
-
-  - name: Houston Rockets
-    type: generic
-    url: https://recruitingbypaycor.com/career/CareerHome.action?clientId=8a7883c689b7fbd50189ffa65b61208d
+    url: https://recruitingbypaycor.com/career/CareerHome.action?clientId=8a7883c68eee9454018ef2f81a7d05a4
 
   - name: Houston Rockets
     type: teamworkonline
     url: https://www.teamworkonline.com/basketball-jobs/houston-rockets-jobs/houston-rockets
 
-  - name: Memphis Grizzlies
-    type: generic
-    url: https://careers-grizzlies.icims.com/jobs/search
-
-  - name: New Orleans Pelicans
-    type: generic
-    url: https://jobs.dayforcehcm.com/bensonenterprises/SAINTSPELSCAREERS
+  # - name: Memphis Grizzlies
+  #   type: generic
+  #   url: https://careers-grizzlies.icims.com/jobs/search
 
   - name: New Orleans Pelicans
     type: teamworkonline
     url: https://www.teamworkonline.com/multiple-properties/neworleanssaintspels/neworleanspelicanssaints
 
   - name: San Antonio Spurs
-    type: generic
-    url: https://jobs.dayforcehcm.com/en-US/onesse/CANDIDATEPORTAL
-    
-  - name: San Antonio Spurs
     type: teamworkonline
-    url: https://jobs.dayforcehcm.com/en-US/onesse/CANDIDATEPORTAL
+    url: https://www.teamworkonline.com/multiple-properties/spurs-jobs/san-antonio-spurs?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=28352&employment_opportunity_search%5Bcareer_level_id%5D=
     
   # ════════════════════════════════════════════════════════════
   # MLB
   # ════════════════════════════════════════════════════════════
 
-  - name: MLB League Office
-    type: generic
-    url: https://www.mlb.com/careers/opportunities
+  # - name: MLB League Office
+  #   type: generic
+  #   url: https://www.mlb.com/careers/opportunities
     
-  - name: Arizona Diamondbacks
-    type: generic
-    url: https://jobs.dayforcehcm.com/en-US/dbacks/CANDIDATEPORTAL
-
   - name: Arizona Diamondbacks
     type: teamworkonline
     url: https://www.teamworkonline.com/baseball-jobs/arizona-diamondbacks-jobs/arizona-diamondbacks
-
-  - name: Athletics
-    type: greenhouse
-    url: https://job-boards.greenhouse.io/athleticsbaseballops
-    params:
-      token: athleticsbaseballops
 
   - name: Athletics
     type: teamworkonline
     url: https://www.teamworkonline.com/baseball-jobs/athletics-jobs/athletics-jobs
 
   - name: Atlanta Braves
-    type: workday
-    url: https://atlantabravesmlb.wd5.myworkdayjobs.com/AtlantaBraves
-
-  - name: Atlanta Braves
     type: teamworkonline
     url: https://www.teamworkonline.com/baseball-jobs/atlanta-braves/atlanta-braves-jobs
-
-  - name: Baltimore Orioles
-    type: greenhouse
-    url: https://job-boards.greenhouse.io/baltimoreorioles
-    params:
-      token: baltimoreorioles
 
   - name: Baltimore Orioles
     type: teamworkonline
     url: https://www.teamworkonline.com/baseball-jobs/orioles-jobs/baltimore-orioles-jobs
 
   - name: Boston Red Sox
-    type: lever
-    url: https://jobs.lever.co/redsox
-    params:
-      company: redsox
-
-  - name: Boston Red Sox
     type: teamworkonline
     url: https://www.teamworkonline.com/baseball-jobs/fenwaysports/boston-red-sox?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=29670&employment_opportunity_search%5Bcareer_level_id%5D=
 
   - name: Chicago Cubs
-    type: workday
-    url: https://my1060wd.wd5.myworkdayjobs.com/Chicago_Cubs_FO
-
-  - name: Chicago Cubs
     type: teamworkonline
     url: https://www.teamworkonline.com/baseball-jobs/chicagobaseball/chicago-cubs
-
-  - name: Chicago White Sox
-    type: generic
-    url: https://recruiting2.ultipro.com/CHI1000CWS/JobBoard/8e2339b4-b699-46e9-8b91-e3e826e53794/
 
   - name: Chicago White Sox
     type: teamworkonline
@@ -263,16 +168,12 @@ sources:
     type: teamworkonline
     url: https://www.teamworkonline.com/baseball-jobs/cincinnati-reds/cincinnati-reds
 
-  - name: Cleveland Guardians
-    type: greenhouse
-    url: https://job-boards.greenhouse.io/clevelandguardiansbops
-    params:
-      token: clevelandguardiansbops
+  # - name: Cleveland Guardians
+  #   type: greenhouse
+  #   url: https://job-boards.greenhouse.io/clevelandguardiansbops
+  #   params:
+  #     token: clevelandguardiansbops
 
-  - name: Colorado Rockies
-    type: generic
-    url: https://recruiting2.ultipro.com/COL1047COLBA/JobBoard/17b65dc7-8957-462f-bbe5-957d054a4367/
-    
   - name: Colorado Rockies
     type: teamworkonline
     url: https://www.teamworkonline.com/baseball-jobs/colorado-rockies/colorado-rockies-jobs
@@ -306,16 +207,8 @@ sources:
     url: https://www.teamworkonline.com/baseball-jobs/milwaukeebaseball/milwaukee-brewers?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=29572&employment_opportunity_search%5Bcareer_level_id%5D=
 
   - name: Minnesota Twins
-    type: generic
-    url: https://recruitingbypaycor.com/career/CareerHome.action?clientId=8a7883d08b729b3e018b72dc67f6007f
-
-  - name: Minnesota Twins
     type: teamworkonline
     url: https://www.teamworkonline.com/baseball-jobs/minnesota-twins/minnesota-twins-jobs
-
-  - name: New York Mets
-    type: workday
-    url: https://sterlingmets.wd5.myworkdayjobs.com/Mets
 
   - name: New York Mets
     type: teamworkonline
@@ -326,26 +219,16 @@ sources:
     url: https://www.teamworkonline.com/baseball-jobs/new-york-yankees/new-york-yankees
 
   - name: Philadelphia Phillies
-    type: greenhouse
-    url: https://job-boards.greenhouse.io/philliesbaseballoperations
-    params:
-      token: philliesbaseballoperations
-
-  - name: Philadelphia Phillies
     type: teamworkonline
     url: https://www.teamworkonline.com/baseball-jobs/philadelphia-phillies/philadelphia-phillies
-
-  - name: Pittsburgh Pirates
-    type: generic   
-    url: https://pirates.rec.pro.ukg.net/PIT1500PITA/JobBoard/1571bce9-cb30-4961-98da-07b26506146a/
 
   - name: Pittsburgh Pirates
     type: teamworkonline   
     url: https://www.teamworkonline.com/baseball-jobs/pittsburghpirates/pittsburgh-pirates-jobs
 
-  - name: San Diego Padres
-    type: generic
-    url: https://careers.hireology.com/sandiegopadres
+  # - name: San Diego Padres
+  #   type: generic
+  #   url: https://careers.hireology.com/sandiegopadres
 
   - name: San Francisco Giants
     type: lever
@@ -354,24 +237,12 @@ sources:
       company: sfgiants
 
   - name: Seattle Mariners
-    type: workday
-    url: https://mariners.wd5.myworkdayjobs.com/Mariners
-
-  - name: Seattle Mariners
     type: teamworkonline
     url: https://www.teamworkonline.com/baseball-jobs/seattle-mariners/seattle-mariners
 
   - name: St. Louis Cardinals
-    type: generic
-    url: https://stlcardinals.aaimtrack.com/jobs/
-
-  - name: St. Louis Cardinals
     type: teamworkonline
     url: https://www.teamworkonline.com/baseball-jobs/stl-cardinals/st--louis-cardinals
-
-  - name: Tampa Bay Rays
-    type: generic
-    url: https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=d4e6b608-831f-4a04-bdb6-f61493552d27
 
   - name: Tampa Bay Rays
     type: teamworkonline
@@ -382,16 +253,8 @@ sources:
     url: https://www.teamworkonline.com/baseball-jobs/texasbaseball/texas-rangers
 
   - name: Toronto Blue Jays
-    type: generic
-    url: https://www.mlb.com/bluejays/team/career/front-office-opportunities
-
-  - name: Toronto Blue Jays
     type: teamworkonline
     url: https://www.teamworkonline.com/baseball-jobs/toronto-blue-jays-jobs/toronto-blue-jays
-
-  - name: Washington Nationals
-    type: generic
-    url: https://washnats.rec.pro.ukg.net/MON1001WNBC/JobBoard/769be41b-7ab1-40e5-b837-33d7c87b5787/
 
   - name: Washington Nationals
     type: teamworkonline
@@ -401,57 +264,35 @@ sources:
   # NFL
   # ════════════════════════════════════════════════════════════
 
-  - name: NFL League Office
-    type: greenhouse
-    url: https://job-boards.greenhouse.io/nflcareers
-    params:
-      token: nflcareers
+  # - name: NFL League Office
+  #   type: greenhouse
+  #   url: https://job-boards.greenhouse.io/nflcareers
+  #   params:
+  #     token: nflcareers
 
   - name: Arizona Cardinals
     type: teamworkonline
     url: https://www.teamworkonline.com/football-jobs/arizona-cardinals-jobs/arizona-cardinals
 
   - name: Atlanta Falcons
-    type: workday
-    url: https://ambgroup.wd1.myworkdayjobs.com/AMBSE
-
-  - name: Atlanta Falcons
     type: teamworkonline
     url: https://www.teamworkonline.com/football-jobs/atlanta-falcons-careers/amb-atlanta-falcons-jobs
-
-  - name: Carolina Panthers
-    type: generic
-    url: https://www.panthers.com/about-us/employment
 
   - name: Carolina Panthers
     type: teamworkonline
     url: https://www.teamworkonline.com/multiple-properties/tepper-sports-entertainment-jobs/tepper-sports-jobs
 
-  - name: Chicago Bears
-    type: generic
-    url: https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=0103272e-a631-4293-97b2-7da68f74bc1f
-
-  - name: Dallas Cowboys
-    type: generic
-    url: https://jobs.dayforcehcm.com/jonesentities/DALLASCOWBOYSFOOTBALLCLUB
+  # - name: Chicago Bears
+  #   type: generic
+  #   url: https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=0103272e-a631-4293-97b2-7da68f74bc1f
 
   - name: Dallas Cowboys
     type: teamworkonline
     url: https://www.teamworkonline.com/football-jobs/dallascowboys/dallas-cowboys-29704?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=29704&employment_opportunity_search%5Bcareer_level_id%5D=
 
   - name: Detroit Lions
-    type: greenhouse
-    url: https://job-boards.greenhouse.io/detroitlions
-    params:
-      token: detroitlions
-
-  - name: Detroit Lions
     type: teamworkonline
     url: https://www.teamworkonline.com/football-jobs/detroit-lions/lions
-
-  - name: Green Bay Packers
-    type: generic
-    url: https://jobs.dayforcehcm.com/en-US/greenbaypackers/CANDIDATEPORTAL
 
   - name: Green Bay Packers
     type: teamworkonline
@@ -461,13 +302,9 @@ sources:
     type: teamworkonline
     url: https://www.teamworkonline.com/football-jobs/la-rams-careers/los-angeles-rams
 
-  - name: Minnesota Vikings
-    type: generic
-    url: https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=79875354-b46d-4cef-b74b-aff52f5942af
-
-  - name: New Orleans Saints
-    type: generic
-    url: https://jobs.dayforcehcm.com/bensonenterprises/SAINTSPELSCAREERS
+  # - name: Minnesota Vikings
+  #   type: generic
+  #   url: https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=79875354-b46d-4cef-b74b-aff52f5942af
 
   - name: New Orleans Saints
     type: teamworkonline
@@ -477,23 +314,23 @@ sources:
     type: teamworkonline
     url: https://www.teamworkonline.com/football-jobs/new-york-giants-jobs/new-york-giants
 
-  - name: Philadelphia Eagles
-    type: greenhouse
-    url: https://job-boards.greenhouse.io/philadelphiaeagles
-    params:
-      token: philadelphiaeagles
+  # - name: Philadelphia Eagles
+  #   type: greenhouse
+  #   url: https://job-boards.greenhouse.io/philadelphiaeagles
+  #   params:
+  #     token: philadelphiaeagles
 
   - name: San Francisco 49ers
     type: generic
     url: https://www.49ers.com/employment/
 
-  - name: Seattle Seahawks
-    type: generic
-    url: https://www2.seahawks.com/employment/openings/
+  # - name: Seattle Seahawks
+  #   type: generic
+  #   url: https://www2.seahawks.com/employment/openings/
 
-  - name: Tampa Bay Buccaneers
-    type: generic
-    url: https://jobs.dayforcehcm.com/en-US/tbb/CANDIDATEPORTALTBB
+  # - name: Tampa Bay Buccaneers
+  #   type: generic
+  #   url: https://jobs.dayforcehcm.com/en-US/tbb/CANDIDATEPORTALTBB
 
   - name: Washington Commanders
     type: teamworkonline
@@ -504,10 +341,6 @@ sources:
     url: https://www.baltimoreravens.com/employment
 
   - name: Buffalo Bills
-    type: generic
-    url: https://recruiting.ultipro.com/HOC10001BFLO/JobBoard/fe63f75a-e850-45d2-8772-63a210927fdc/
-
-  - name: Buffalo Bills
     type: teamworkonline
     url: https://www.teamworkonline.com/football-jobs/buffalo-bills/buffalo-bills-29559
 
@@ -516,18 +349,14 @@ sources:
     url: https://www.teamworkonline.com/football-jobs/footballjobs/cincinnati-bengals
 
   - name: Cleveland Browns
-    type: generic
-    url: https://clevelandbrowns.isolvedhire.com/jobs/
-
-  - name: Cleveland Browns
     type: teamworkonline
     url: https://www.teamworkonline.com/football-jobs/browns/cleveland-browns-28698
 
-  - name: Denver Broncos
-    type: greenhouse
-    url: https://job-boards.greenhouse.io/denverbroncosteamllc
-    params:
-      token: denverbroncosteamllc
+  # - name: Denver Broncos
+  #   type: greenhouse
+  #   url: https://job-boards.greenhouse.io/denverbroncosteamllc
+  #   params:
+  #     token: denverbroncosteamllc
 
   - name: Houston Texans
     type: teamworkonline
@@ -546,10 +375,6 @@ sources:
     url: https://www.teamworkonline.com/football-jobs/chiefs/kansas-city-chiefs-29577
 
   - name: Las Vegas Raiders
-    type: generic
-    url: https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=58d2d945-3a8e-4bea-81f1-e18a4a93c137
-
-  - name: Las Vegas Raiders
     type: teamworkonline
     url: https://www.teamworkonline.com/football-jobs/raiders/raiders-jobs
 
@@ -561,9 +386,9 @@ sources:
     type: teamworkonline
     url: https://www.teamworkonline.com/football-jobs/miami-dolphins-jobs/miami-dolphins
 
-  - name: New England Patriots
-    type: generic
-    url: https://www.paycomonline.net/v4/ats/web.php/portal/715F4103F5E4D572C92AFE85684343DC/career-page
+  # - name: New England Patriots
+  #   type: generic
+  #   url: https://www.paycomonline.net/v4/ats/web.php/portal/715F4103F5E4D572C92AFE85684343DC/career-page
 
   - name: New York Jets
     type: teamworkonline
@@ -573,9 +398,9 @@ sources:
     type: teamworkonline
     url: https://www.teamworkonline.com/football-jobs/footballjobs/pittsburgh-steelers-
 
-  - name: Tennessee Titans
-    type: generic
-    url: https://jobs.dayforcehcm.com/titans/CANDIDATEPORTAL
+  # - name: Tennessee Titans
+  #   type: generic
+  #   url: https://jobs.dayforcehcm.com/titans/CANDIDATEPORTAL
 
   # ════════════════════════════════════════════════════════════
   # NHL
