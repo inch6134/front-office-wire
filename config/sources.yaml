@@ -406,6 +406,138 @@ sources:
   # NHL
   # ════════════════════════════════════════════════════════════
     
+  - name: NHL League Office
+    type: teamworkonline
+    url: https://www.teamworkonline.com/hockey-jobs/hockeyjobs/nhl-league-office?employment_opportunity_search%5Bquery%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=28289
+
+  - name: Carolina Hurricanes
+    type: teamworkonline
+    url: https://www.teamworkonline.com/hockey-jobs/carolina-hurricanes-jobs/carolina-hurricanes?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=28278&employment_opportunity_search%5Bcareer_level_id%5D=
+
+  - name: Columbus Blue Jackets
+    type: generic
+    url: 
+
+  - name: New Jersey Devils
+    type: teamworkonline
+    url: https://www.teamworkonline.com/multiple-properties/harris-blitzer-sports-entertainment-jobs/harris-blitzer-sports-and-entertainment-jobs?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=28286&employment_opportunity_search%5Bcareer_level_id%5D=
+
+  - name: New York Islanders
+    type: teamworkonline
+    url: https://www.teamworkonline.com/hockey-jobs/new-york-islanders/new-york-islanders
+
+  - name: New York Rangers
+    type: generic
+    url: 
+
+  - name: Philadelphia Flyers
+    type: teamworkonline
+    url: https://www.teamworkonline.com/hockey-jobs/philadelphia-flyers-jobs/philadelphia-flyers-jobs
+
+  - name: Pittsburgh Penguins
+    type: teamworkonline
+    url: https://www.teamworkonline.com/hockey-jobs/pittsburgh-penguins/pittsburgh-penguins
+
+  - name: Washington Capitals
+    type: teamworkonline
+    url: https://www.teamworkonline.com/multiple-properties/monumentalsports/monumental-sports?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=30003&employment_opportunity_search%5Bcareer_level_id%5D=
+
+  - name: Boston Bruins
+    type: teamworkonline
+    url: https://www.teamworkonline.com/hockey-jobs/boston-bruins-jobs/boston-bruins-jobs
+
+  - name: Buffalo Sabres
+    type: teamworkonline
+    url: https://www.teamworkonline.com/hockey-jobs/buffalosports/buffalo-sabres-29560?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=29560&employment_opportunity_search%5Bcareer_level_id%5D=
+
+  - name: Detroit Red Wings
+    type: generic
+    url: 
+
+  - name: Florida Panthers
+    type: teamworkonline
+    url: https://www.teamworkonline.com/hockey-jobs/floridapanthers/florida-panthers?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=29750&employment_opportunity_search%5Bcareer_level_id%5D=
+
+  - name: Montreal Canadiens
+    type: generic
+    url: 
+
+  - name: Ottawa Senators
+    type: generic
+    url: 
+
+  - name: Tampa Bay Lightning
+    type: teamworkonline
+    url: https://www.teamworkonline.com/hockey-jobs/tampanhl/vinik-sports-group-jobs?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=28405&employment_opportunity_search%5Bcareer_level_id%5D=
+
+  - name: Toronto Maple Leafs
+    type: generic
+    url: 
+
+  - name: Chicago Blackhawks
+    type: teamworkonline
+    url: https://www.teamworkonline.com/hockey-jobs/chicago-blackhawks/chicago-blackhawks?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=28279&employment_opportunity_search%5Bcareer_level_id%5D=
+
+  - name: Colorado Avalanche
+    type: teamworkonline
+    url: https://www.teamworkonline.com/multiple-properties/kroenkesportsjobs/kroenke-sports---entertainment?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=&employment_opportunity_search%5Bcareer_level_id%5D=
+
+  - name: Dallas Stars
+    type: teamworkonline
+    url: https://www.teamworkonline.com/hockey-jobs/dallas-stars-jobs/dallas-stars?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=28281&employment_opportunity_search%5Bcareer_level_id%5D=
+
+  - name: Minnesota Wild
+    type: teamworkonline
+    url: https://www.teamworkonline.com/hockey-jobs/minnesota-wild-jobs/minnesota-se?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=32994&employment_opportunity_search%5Bcareer_level_id%5D=
+
+  - name: Nashville Predators
+    type: teamworkonline
+    url: https://www.teamworkonline.com/hockey-jobs/nashville-predators/nashville-predators?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=28285&employment_opportunity_search%5Bcareer_level_id%5D=
+
+  - name: St. Louis Blues
+    type: generic
+    url:
+
+  - name: Utah Mammoth
+    type: teamworkonline
+    url: https://www.teamworkonline.com/hockey-jobs/utah-nhl-jobs/utah-nhl-jobs
+
+  - name: Winnipeg Jets
+    type: generic
+    url: 
+
+  - name: Anaheim Ducks
+    type: teamworkonline
+    url: https://www.teamworkonline.com/hockey-jobs/anaheim-ducks-jobs/anaheim-ducks-hockey-club
+
+  - name: Calgary Flames
+    type: generic
+    url: 
+
+  - name: Edmonton Oilers
+    type: teamworkonline
+    url: https://www.teamworkonline.com/hockey-jobs/edmontonoilers/edmonton-oilers-29182
+
+  - name: Los Angeles Kings
+    type: teamworkonline
+    url: https://www.teamworkonline.com/hockey-jobs/los-angeles-kings-jobs/los-angeles-kings-28605
+
+  - name: San Jose Sharks
+    type: teamworkonline
+    url: https://www.teamworkonline.com/hockey-jobs/sharkssports/san-jose-sharks?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=28386&employment_opportunity_search%5Bcareer_level_id%5D=
+
+  - name: Seattle Kraken
+    type: teamworkonline
+    url: https://www.teamworkonline.com/hockey-jobs/seattle-kraken-/nhl-seattle-jobs?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=30248&employment_opportunity_search%5Bcareer_level_id%5D=
+
+  - name: Vancouver Canucks
+    type: teamworkonline
+    url: https://www.teamworkonline.com/hockey-jobs/vancouver-canucks/vancouver-canucks
+    
+  - name: Vegas Golden Knights
+    type: teamworkonline
+    url: https://www.teamworkonline.com/hockey-jobs/vegas-golden-knights/vegas-nhl
+
   # ════════════════════════════════════════════════════════════
   # European Football, MLS, etc.
   # ════════════════════════════════════════════════════════════

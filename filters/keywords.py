@@ -7,6 +7,7 @@ Negative keywords:  job is excluded if it matches any
 Matching is against the job title (primary) and description (secondary).
 All matching is case-insensitive.
 """
+
 import logging
 import re
 from typing import Sequence
@@ -35,6 +36,9 @@ DEFAULT_POSITIVE: list[str] = [
     "platform engineer",
     "systems developer",
     "systems engineer",
+    "ai engineer",
+    "llmops",
+    "llm",
 ]
 
 DEFAULT_NEGATIVE: list[str] = [
@@ -72,8 +76,12 @@ class JobFilter:
         positive: list[str] | None = None,
         negative: list[str] | None = None,
     ):
-        self._positive = _compile(positive if positive is not None else DEFAULT_POSITIVE)
-        self._negative = _compile(negative if negative is not None else DEFAULT_NEGATIVE)
+        self._positive = _compile(
+            positive if positive is not None else DEFAULT_POSITIVE
+        )
+        self._negative = _compile(
+            negative if negative is not None else DEFAULT_NEGATIVE
+        )
 
     def matches(self, job: Job) -> bool:
         text = f"{job.title} {job.description}"
@@ -85,6 +93,10 @@ class JobFilter:
         matched = [j for j in jobs if self.matches(j)]
         logger.info(
             "Keyword filter applied",
-            extra={"total": len(jobs), "matched": len(matched), "dropped": len(jobs) - len(matched)},
+            extra={
+                "total": len(jobs),
+                "matched": len(matched),
+                "dropped": len(jobs) - len(matched),
+            },
         )
         return matched
