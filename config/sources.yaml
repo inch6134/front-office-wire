@@ -415,8 +415,8 @@ sources:
     url: https://www.teamworkonline.com/hockey-jobs/carolina-hurricanes-jobs/carolina-hurricanes?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=28278&employment_opportunity_search%5Bcareer_level_id%5D=
 
   - name: Columbus Blue Jackets
-    type: generic
-    url: 
+    type: teamworkonline
+    url: https://www.teamworkonline.com/hockey-jobs/hockeyjobs/columbus-blue-jackets/
 
   - name: New Jersey Devils
     type: teamworkonline
@@ -428,7 +428,7 @@ sources:
 
   - name: New York Rangers
     type: generic
-    url: 
+    url: https://www.msgsports.com/jobs/
 
   - name: Philadelphia Flyers
     type: teamworkonline
@@ -451,8 +451,8 @@ sources:
     url: https://www.teamworkonline.com/hockey-jobs/buffalosports/buffalo-sabres-29560?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=29560&employment_opportunity_search%5Bcareer_level_id%5D=
 
   - name: Detroit Red Wings
-    type: generic
-    url: 
+    type: teamworkonline
+    url: https://www.teamworkonline.com/multiple-properties/ilitch-sports/detroit-red-wings
 
   - name: Florida Panthers
     type: teamworkonline
@@ -460,11 +460,11 @@ sources:
 
   - name: Montreal Canadiens
     type: generic
-    url: 
+    url: https://www.linkedin.com/company/canadiensdemontreal/jobs/
 
   - name: Ottawa Senators
     type: generic
-    url: 
+    url: https://ottawasenators.bamboohr.com/careers
 
   - name: Tampa Bay Lightning
     type: teamworkonline
@@ -472,7 +472,7 @@ sources:
 
   - name: Toronto Maple Leafs
     type: generic
-    url: 
+    url: https://mlse.wd3.myworkdayjobs.com/MLSE
 
   - name: Chicago Blackhawks
     type: teamworkonline
@@ -496,7 +496,7 @@ sources:
 
   - name: St. Louis Blues
     type: generic
-    url:
+    url: https://www.enterprisecenter.com/about-us/employment/open-positions
 
   - name: Utah Mammoth
     type: teamworkonline
@@ -504,7 +504,7 @@ sources:
 
   - name: Winnipeg Jets
     type: generic
-    url: 
+    url: https://www.tnse.com/join-our-team/
 
   - name: Anaheim Ducks
     type: teamworkonline
@@ -512,7 +512,7 @@ sources:
 
   - name: Calgary Flames
     type: generic
-    url: 
+    url: https://recruiting.ultipro.ca/CAL5002/JobBoard/5f9649eb-fe0e-95eb-07f5-9ac9b3ae6647/?q=&o=postedDateDesc
 
   - name: Edmonton Oilers
     type: teamworkonline
