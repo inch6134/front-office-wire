@@ -392,7 +392,7 @@ sources:
 
   - name: New York Jets
     type: teamworkonline
-    url: https://www.teamworkonline.com/football-jobs/footballjobs/nfl-football-jobs?employment_opportunity_search%5Bquery%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=28617&employment_opportunity_search%5Bcareer_level_id%5D=
+    url: https://www.teamworkonline.com/football-jobs/footballjobs/new-york-jets
 
   - name: Pittsburgh Steelers
     type: teamworkonline
@@ -408,7 +408,7 @@ sources:
     
   - name: NHL League Office
     type: teamworkonline
-    url: https://www.teamworkonline.com/hockey-jobs/hockeyjobs/nhl-league-office?employment_opportunity_search%5Bquery%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=28289
+    url: https://www.teamworkonline.com/hockey-jobs/hockeyjobs/nhl-league-office?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=28289&employment_opportunity_search%5Bcareer_level_id%5D=
 
   - name: Carolina Hurricanes
     type: teamworkonline
@@ -470,9 +470,9 @@ sources:
     type: teamworkonline
     url: https://www.teamworkonline.com/hockey-jobs/tampanhl/vinik-sports-group-jobs?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=28405&employment_opportunity_search%5Bcareer_level_id%5D=
 
-  - name: Toronto Maple Leafs
-    type: generic
-    url: https://mlse.wd3.myworkdayjobs.com/MLSE
+  # - name: Toronto Maple Leafs
+  #   type: workday
+  #   url: https://mlse.wd3.myworkdayjobs.com/MLSE
 
   - name: Chicago Blackhawks
     type: teamworkonline

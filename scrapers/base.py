@@ -19,7 +19,9 @@ class Job:
     source: str
 
 
-def build_session(retries: int = 3, backoff: float = 0.5, timeout: int = 10) -> requests.Session:
+def build_session(
+    retries: int = 3, backoff: float = 0.5, timeout: int = 30
+) -> requests.Session:
     session = requests.Session()
     retry = Retry(
         total=retries,
@@ -30,7 +32,9 @@ def build_session(retries: int = 3, backoff: float = 0.5, timeout: int = 10) -> 
     adapter = HTTPAdapter(max_retries=retry)
     session.mount("https://", adapter)
     session.mount("http://", adapter)
-    session.headers.update({"User-Agent": "FrontOfficeWireBot/1.0 (+https://github.com/)"})
+    session.headers.update(
+        {"User-Agent": "FrontOfficeWireBot/1.0 (+https://github.com/)"}
+    )
     session._default_timeout = timeout
     return session
 
