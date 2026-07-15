@@ -50,12 +50,15 @@ class JsonFormatter(logging.Formatter):
 
 
 class TextFormatter(logging.Formatter):
+    def __init__(self):
+        super().__init__("[%(levelname)s] %(name)s: %(message)s")
+
     def format(self, record: logging.LogRecord) -> str:
         record.message = record.getMessage()
         s = self.formatMessage(record)
         extra = _extra_fields(record)
         if extra:
-            s += "  " + "  ".join(f"{k}={v}" for k, v in extra.items())
+            s += "\n       " + ", ".join(f"{k}={v}" for k, v in extra.items())
         if record.exc_info:
             s += "\n" + self.formatException(record.exc_info)
         return s
