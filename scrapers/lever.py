@@ -1,7 +1,3 @@
-"""
-Lever public postings API scraper.
-Endpoint: https://api.lever.co/v0/postings/{company}?mode=json
-"""
 import logging
 from typing import Any
 
@@ -23,8 +19,10 @@ class LeverScraper(BaseScraper):
         api_url = LEVER_API.format(company=self.company)
         logger.info("Fetching Lever jobs", extra={"source": self.name, "url": api_url})
 
-        raw_jobs: list[dict[str, Any]] = self.get(api_url, params={"mode": "json"}).json()
-        logger.info("Raw jobs fetched", extra={"source": self.name, "count": len(raw_jobs)})
+        raw_jobs: list[dict[str, Any]] = self.get(
+            api_url, params={"mode": "json"}
+        ).json()
+        logger.info("Raw jobs fetched", extra={"count": len(raw_jobs)})
 
         jobs = []
         for raw in raw_jobs:
@@ -33,7 +31,10 @@ class LeverScraper(BaseScraper):
             except Exception as exc:
                 logger.warning(
                     "Failed to parse Lever job",
-                    extra={"source": self.name, "job": raw.get("id"), "error": str(exc)},
+                    extra={
+                        "job": raw.get("id"),
+                        "error": str(exc),
+                    },
                 )
         return jobs
 

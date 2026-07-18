@@ -1,13 +1,3 @@
-"""
-main.py - Front Office Wire entry point.
-
-Run:
-    python main.py
-
-Environment:
-    See .env.example for required variables.
-"""
-
 import logging
 import os
 import sys
@@ -71,10 +61,12 @@ def run() -> None:
                     all_new_jobs.extend(new_jobs)
                     logger.info(
                         "New jobs found",
-                        extra={"source": name, "count": len(new_jobs)},
+                        extra={"count": len(new_jobs)},
                     )
                 else:
-                    logger.info("No new jobs", extra={"source": name})
+                    logger.info(
+                        "No new jobs",
+                    )
 
             except Exception as exc:
                 logger.error(

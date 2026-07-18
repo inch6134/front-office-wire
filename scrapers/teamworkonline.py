@@ -27,7 +27,6 @@ class TeamWorkOnlineScraper(BaseScraper):
             logger.info(
                 "TeamWork Online page fetched",
                 extra={
-                    "source": self.name,
                     "page": page,
                     "status": response.status_code,
                     "content_length": len(response.text),
@@ -41,7 +40,6 @@ class TeamWorkOnlineScraper(BaseScraper):
                 if page == 1:
                     logger.warning(
                         "No job cards found; TeamWork Online page structure may have changed",
-                        extra={"source": self.name, "url": self.url},
                     )
                 break
 
@@ -53,7 +51,7 @@ class TeamWorkOnlineScraper(BaseScraper):
                 except Exception as exc:
                     logger.warning(
                         "Failed to parse TeamWork Online card",
-                        extra={"source": self.name, "error": str(exc)},
+                        extra={"error": str(exc)},
                     )
 
             next_link = soup.select_one("a[rel='next']")
@@ -61,12 +59,10 @@ class TeamWorkOnlineScraper(BaseScraper):
                 break
             page += 1
             if page > MAX_PAGES:
-                logger.warning(
-                    "Hit page cap", extra={"source": self.name, "pages": MAX_PAGES}
-                )
+                logger.warning("Hit page cap", extra={"pages": MAX_PAGES})
                 break
 
-        logger.info("Raw jobs fetched", extra={"source": self.name, "count": len(jobs)})
+        logger.info("Raw jobs fetched", extra={"count": len(jobs)})
         return jobs
 
     def _parse_card(self, card) -> Job | None:

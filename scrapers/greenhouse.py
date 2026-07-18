@@ -1,9 +1,3 @@
-"""
-Greenhouse public jobs API scraper.
-API docs: https://developers.greenhouse.io/job-board.html
-HTTP Request: GET https://boards-api.greenhouse.io/v1/boards/{board_token}/jobs?content=true
-"""
-
 import logging
 from typing import Any
 
@@ -29,9 +23,7 @@ class GreenhouseScraper(BaseScraper):
 
         data = self.get(api_url, params={"content": "true"}).json()
         raw_jobs: list[dict[str, Any]] = data.get("jobs", [])
-        logger.info(
-            "Raw jobs fetched", extra={"source": self.name, "count": len(raw_jobs)}
-        )
+        logger.info("Raw jobs fetched", extra={"count": len(raw_jobs)})
 
         jobs = []
         for raw in raw_jobs:
@@ -41,7 +33,6 @@ class GreenhouseScraper(BaseScraper):
                 logger.warning(
                     "Failed to parse Greenhouse job",
                     extra={
-                        "source": self.name,
                         "job": raw.get("id"),
                         "error": str(exc),
                     },

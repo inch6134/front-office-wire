@@ -1,22 +1,3 @@
-"""
-Workday scraper using CXS jobs API.
-
-Handles two Workday URL structures:
-
-  Pattern A (myworkdayjobs.com):
-    https://{company}.wd{n}.myworkdayjobs.com/en-US/{jobboard}
-    CXS API: https://{company}.wd{n}.myworkdayjobs.com/wday/cxs/{company}/{jobboard}/jobs
-
-  Pattern B (myworkdaysite.com):
-    https://wd{n}.myworkdaysite.com/en-US/recruiting/{company}/{jobboard}
-    CXS API: https://wd{n}.myworkdaysite.com/wday/cxs/{company}/{jobboard}/jobs
-
-Sources can supply explicit params to override auto-detection:
-  params:
-    company: mycompany
-    jobboard: MyJobBoard
-    version: wd5
-"""
 import logging
 import re
 from typing import Any
@@ -41,10 +22,6 @@ _SITE_RE = re.compile(
 
 
 def _parse_url(url: str) -> tuple[str, str, str]:
-    """
-    Returns (host, company, jobboard) parsed from a Workday URL.
-    Raises ValueError if neither pattern matches.
-    """
     m = _JOBS_RE.match(url)
     if m:
         company = m.group("company")
@@ -76,7 +53,11 @@ class WorkdayScraper(BaseScraper):
             # Determine host: if url contains myworkdaysite, use that pattern
             if "myworkdaysite.com" in url:
                 m = _SITE_RE.match(url)
-                host = f"{m.group('version')}.myworkdaysite.com" if m else f"{version}.myworkdaysite.com"
+                host = (
+                    f"{m.group('version')}.myworkdaysite.com"
+                    if m
+                    else f"{version}.myworkdaysite.com"
+                )
             else:
                 host = f"{company}.{version}.myworkdayjobs.com"
         else:
@@ -90,9 +71,16 @@ class WorkdayScraper(BaseScraper):
             self._job_url_base = f"https://{host}/recruiting/{company}/{jobboard}"
 
     def fetch_jobs(self) -> list[Job]:
-        logger.info("Fetching Workday jobs", extra={"source": self.name, "url": self.api_url})
+        logger.info(
+            "Fetching Workday jobs", extra={"source": self.name, "url": self.api_url}
+        )
 
-        payload: dict[str, Any] = {"limit": 20, "offset": 0, "searchText": "", "appliedFacets": {}}
+        payload: dict[str, Any] = {
+            "limit": 20,
+            "offset": 0,
+            "searchText": "",
+            "appliedFacets": {},
+        }
         all_postings: list[dict[str, Any]] = []
         offset = 0
 
@@ -106,7 +94,7 @@ class WorkdayScraper(BaseScraper):
             if not postings or offset >= total:
                 break
 
-        logger.info("Raw jobs fetched", extra={"source": self.name, "count": len(all_postings)})
+        logger.info("Raw jobs fetched", extra={"count": len(all_postings)})
 
         jobs = []
         for raw in all_postings:
@@ -115,7 +103,7 @@ class WorkdayScraper(BaseScraper):
             except Exception as exc:
                 logger.warning(
                     "Failed to parse Workday job",
-                    extra={"source": self.name, "error": str(exc)},
+                    extra={"error": str(exc)},
                 )
         return jobs
 

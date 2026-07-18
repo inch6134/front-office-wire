@@ -58,7 +58,7 @@ class TextFormatter(logging.Formatter):
         s = self.formatMessage(record)
         extra = _extra_fields(record)
         if extra:
-            s += "\n       " + ", ".join(f"{k}={v}" for k, v in extra.items())
+            s += ": " + ", ".join(f"{k}={v}" for k, v in extra.items())
         if record.exc_info:
             s += "\n" + self.formatException(record.exc_info)
         return s

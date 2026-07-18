@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from typing import Optional
 
 import requests
 from requests.adapters import HTTPAdapter
@@ -15,7 +14,7 @@ class Job:
     location: str
     url: str
     description: str
-    posted_at: Optional[str]
+    posted_at: None
     source: str
 
 

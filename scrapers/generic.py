@@ -43,7 +43,6 @@ class GenericScraper(BaseScraper):
         logger.info(
             "Generic page fetched",
             extra={
-                "source": self.name,
                 "status": response.status_code,
                 "content_length": len(response.text),
             },
@@ -59,7 +58,6 @@ class GenericScraper(BaseScraper):
         if not cards:
             logger.warning(
                 "No job cards found with generic scraper",
-                extra={"source": self.name, "url": self.url},
             )
             return []
 
@@ -72,10 +70,10 @@ class GenericScraper(BaseScraper):
             except Exception as exc:
                 logger.warning(
                     "Failed to parse generic card",
-                    extra={"source": self.name, "error": str(exc)},
+                    extra={"error": str(exc)},
                 )
 
-        logger.info("Raw jobs fetched", extra={"source": self.name, "count": len(jobs)})
+        logger.info("Raw jobs fetched", extra={"count": len(jobs)})
         return jobs
 
     def _parse_card(self, card) -> Job | None:
