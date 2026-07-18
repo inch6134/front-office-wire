@@ -4,9 +4,9 @@ sources:
   # NBA
   # ════════════════════════════════════════════════════════════
 
-  - name: NBA League Office
-    type: generic
-    url: https://careers.nba.com/search-results
+  # - name: NBA League Office
+  #   type: generic
+  #   url: https://careers.nba.com/search-results
 
   # - name: Boston Celtics
   #   type: generic
@@ -28,17 +28,17 @@ sources:
     type: workday
     url: https://mlse.wd3.myworkdayjobs.com/MLSE
 
-  - name: Chicago Bulls
-    type: generic
-    url: https://recruiting.paylocity.com/recruiting/jobs/All/cdb52b85-73f7-4c58-bf01-80d3e5ee2ca3/The-Chicago-Bulls
+  # - name: Chicago Bulls
+  #   type: generic
+  #   url: https://recruiting.paylocity.com/recruiting/jobs/All/cdb52b85-73f7-4c58-bf01-80d3e5ee2ca3/The-Chicago-Bulls
 
   - name: Cleveland Cavaliers
     type: teamworkonline
     url: https://www.teamworkonline.com/basketball-jobs/cleveland-cavaliers/cleveland-cavaliers-jobs?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=28520&employment_opportunity_search%5Bcareer_level_id%5D=
 
-  - name: Detroit Pistons
-    type: generic
-    url: https://recruiting.paylocity.com/recruiting/jobs/All/19408bc7-4e69-4ea7-9ff6-3e39455d6469/Detroit-Pistons
+  # - name: Detroit Pistons
+  #   type: generic
+  #   url: https://recruiting.paylocity.com/recruiting/jobs/All/19408bc7-4e69-4ea7-9ff6-3e39455d6469/Detroit-Pistons
 
   - name: Indiana Pacers
     type: teamworkonline
@@ -56,9 +56,9 @@ sources:
     type: teamworkonline
     url: https://www.teamworkonline.com/basketball-jobs/charlotte/charlotte-hornets
     
-  - name: Miami Heat
-    type: generic
-    url: https://recruiting.ultipro.com/MIA1004MHLP/JobBoard/b34868a3-6ce1-4a28-b8fb-afb1cd5be9d3/
+  # - name: Miami Heat
+  #   type: generic
+  #   url: https://recruiting.ultipro.com/MIA1004MHLP/JobBoard/b34868a3-6ce1-4a28-b8fb-afb1cd5be9d3/
     
   - name: Orlando Magic
     type: teamworkonline
@@ -182,9 +182,9 @@ sources:
     type: teamworkonline
     url: https://www.teamworkonline.com/multiple-properties/ilitch-sports/detroit-tigers
 
-  - name: Houston Astros
-    type: generic
-    url: https://recruiting2.ultipro.com/HOU1000/JobBoard/e68ddd55-8f58-ba9d-0b3a-76742aed1055/
+  # - name: Houston Astros
+  #   type: generic
+  #   url: https://recruiting2.ultipro.com/HOU1000/JobBoard/e68ddd55-8f58-ba9d-0b3a-76742aed1055/
 
   - name: Kansas City Royals
     type: teamworkonline
@@ -458,13 +458,13 @@ sources:
     type: teamworkonline
     url: https://www.teamworkonline.com/hockey-jobs/floridapanthers/florida-panthers?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=29750&employment_opportunity_search%5Bcareer_level_id%5D=
 
-  - name: Montreal Canadiens
-    type: generic
-    url: https://www.linkedin.com/company/canadiensdemontreal/jobs/
+  # - name: Montreal Canadiens
+  #   type: generic
+  #   url: https://www.linkedin.com/company/canadiensdemontreal/jobs/
 
-  - name: Ottawa Senators
-    type: generic
-    url: https://ottawasenators.bamboohr.com/careers
+  # - name: Ottawa Senators
+  #   type: generic
+  #   url: https://ottawasenators.bamboohr.com/careers
 
   - name: Tampa Bay Lightning
     type: teamworkonline
@@ -494,9 +494,9 @@ sources:
     type: teamworkonline
     url: https://www.teamworkonline.com/hockey-jobs/nashville-predators/nashville-predators?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=28285&employment_opportunity_search%5Bcareer_level_id%5D=
 
-  - name: St. Louis Blues
-    type: generic
-    url: https://www.enterprisecenter.com/about-us/employment/open-positions
+  # - name: St. Louis Blues
+  #   type: generic
+  #   url: https://www.enterprisecenter.com/about-us/employment/open-positions
 
   - name: Utah Mammoth
     type: teamworkonline
@@ -510,9 +510,9 @@ sources:
     type: teamworkonline
     url: https://www.teamworkonline.com/hockey-jobs/anaheim-ducks-jobs/anaheim-ducks-hockey-club
 
-  - name: Calgary Flames
-    type: generic
-    url: https://recruiting.ultipro.ca/CAL5002/JobBoard/5f9649eb-fe0e-95eb-07f5-9ac9b3ae6647/?q=&o=postedDateDesc
+  # - name: Calgary Flames
+  #   type: generic
+  #   url: https://recruiting.ultipro.ca/CAL5002/JobBoard/5f9649eb-fe0e-95eb-07f5-9ac9b3ae6647/?q=&o=postedDateDesc
 
   - name: Edmonton Oilers
     type: teamworkonline
