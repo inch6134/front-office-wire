@@ -23,6 +23,18 @@ parser.add_argument(
     nargs="+",
     help="Scrape only the specified source. May be provided multiple times.",
 )
+parser.add_argument(
+    "--level",
+    default="INFO",
+    choices=["DEBUG", "INFO", "WARNING", "ERROR"],
+    help="Set log level. Options include: DEBUG | INFO | WARNING | ERROR",
+)
+parser.add_argument(
+    "--format",
+    default="TEXT",
+    choices=["TEXT", "JSON"],
+    help="Set log format. Options include: TEXT | JSON",
+)
 
 
 def load_sources(config_path: Path, args: argparse.Namespace) -> list[dict]:
@@ -42,6 +54,9 @@ def run() -> None:
     args = parser.parse_args()
 
     sources = load_sources(config_path, args)
+    if args.level or args.format:
+        setup_logging(args.level, args.format)
+
     job_filter = JobFilter()
 
     all_new_jobs = []

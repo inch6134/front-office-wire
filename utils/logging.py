@@ -64,9 +64,9 @@ class TextFormatter(logging.Formatter):
         return s
 
 
-def setup_logging(level: str | None = None) -> None:
+def setup_logging(level: str | None = None, format: str | None = None) -> None:
     log_level = (level or os.getenv("LOG_LEVEL", "INFO")).upper()
-    log_format = os.getenv("LOG_FORMAT", "text").lower()
+    log_format = (format or os.getenv("LOG_FORMAT", "text")).lower()
 
     handler = logging.StreamHandler(sys.stdout)
     if log_format == "json":
