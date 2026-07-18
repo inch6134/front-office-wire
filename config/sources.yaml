@@ -24,9 +24,9 @@ sources:
     type: teamworkonline
     url: https://www.teamworkonline.com/multiple-properties/harris-blitzer-sports-entertainment-jobs/harris-blitzer-sports-and-entertainment-jobs?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=28511&employment_opportunity_search%5Bcareer_level_id%5D=
 
-  # - name: Toronto Raptors
-  #   type: workday
-  #   url: https://mlse.wd3.myworkdayjobs.com/MLSE
+  - name: Toronto Raptors
+    type: workday
+    url: https://mlse.wd3.myworkdayjobs.com/MLSE
 
   - name: Chicago Bulls
     type: generic
@@ -168,11 +168,11 @@ sources:
     type: teamworkonline
     url: https://www.teamworkonline.com/baseball-jobs/cincinnati-reds/cincinnati-reds
 
-  # - name: Cleveland Guardians
-  #   type: greenhouse
-  #   url: https://job-boards.greenhouse.io/clevelandguardiansbops
-  #   params:
-  #     token: clevelandguardiansbops
+  - name: Cleveland Guardians
+    type: greenhouse
+    url: https://job-boards.greenhouse.io/clevelandguardiansbops
+    params:
+      token: clevelandguardiansbops
 
   - name: Colorado Rockies
     type: teamworkonline
@@ -264,11 +264,11 @@ sources:
   # NFL
   # ════════════════════════════════════════════════════════════
 
-  # - name: NFL League Office
-  #   type: greenhouse
-  #   url: https://job-boards.greenhouse.io/nflcareers
-  #   params:
-  #     token: nflcareers
+  - name: NFL League Office
+    type: greenhouse
+    url: https://job-boards.greenhouse.io/nflcareers
+    params:
+      token: nflcareers
 
   - name: Arizona Cardinals
     type: teamworkonline
@@ -314,11 +314,11 @@ sources:
     type: teamworkonline
     url: https://www.teamworkonline.com/football-jobs/new-york-giants-jobs/new-york-giants
 
-  # - name: Philadelphia Eagles
-  #   type: greenhouse
-  #   url: https://job-boards.greenhouse.io/philadelphiaeagles
-  #   params:
-  #     token: philadelphiaeagles
+  - name: Philadelphia Eagles
+    type: greenhouse
+    url: https://job-boards.greenhouse.io/philadelphiaeagles
+    params:
+      token: philadelphiaeagles
 
   - name: San Francisco 49ers
     type: generic
@@ -352,11 +352,11 @@ sources:
     type: teamworkonline
     url: https://www.teamworkonline.com/football-jobs/browns/cleveland-browns-28698
 
-  # - name: Denver Broncos
-  #   type: greenhouse
-  #   url: https://job-boards.greenhouse.io/denverbroncosteamllc
-  #   params:
-  #     token: denverbroncosteamllc
+  - name: Denver Broncos
+    type: greenhouse
+    url: https://job-boards.greenhouse.io/denverbroncosteamllc
+    params:
+      token: denverbroncosteamllc
 
   - name: Houston Texans
     type: teamworkonline
@@ -470,9 +470,9 @@ sources:
     type: teamworkonline
     url: https://www.teamworkonline.com/hockey-jobs/tampanhl/vinik-sports-group-jobs?employment_opportunity_search%5Bplace_name%5D=&employment_opportunity_search%5Bcategory_id%5D=&employment_opportunity_search%5Borganization_id%5D=28405&employment_opportunity_search%5Bcareer_level_id%5D=
 
-  # - name: Toronto Maple Leafs
-  #   type: workday
-  #   url: https://mlse.wd3.myworkdayjobs.com/MLSE
+  - name: Toronto Maple Leafs
+    type: workday
+    url: https://mlse.wd3.myworkdayjobs.com/MLSE
 
   - name: Chicago Blackhawks
     type: teamworkonline
